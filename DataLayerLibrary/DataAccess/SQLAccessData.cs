@@ -12,7 +12,7 @@ namespace DataLayerLibrary.DataAccess
     {
         public static string GetConnectionString()
         {
-            return "Server=84.86.167.197;port=3306;user=root;password=W9p$4eR#;database=app_db;";
+            return "Server=84.86.167.197;port=3306;user=Marco;password=W9p$4eR#;database=app_db;";
         }
 
         public static List<T> LoadData<T>(string sql)

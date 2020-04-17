@@ -1,5 +1,8 @@
 D:\eigenproject git\MarcoEigenProject\LogicLayerLibrary\bin\Debug\netcoreapp3.1\LogicLayerLibrary.deps.json
 D:\eigenproject git\MarcoEigenProject\LogicLayerLibrary\bin\Debug\netcoreapp3.1\LogicLayerLibrary.dll
-D:\eigenproject git\MarcoEigenProject\LogicLayerLibrary\obj\Debug\netcoreapp3.1\LogicLayerLibrary.csprojAssemblyReference.cache
 D:\eigenproject git\MarcoEigenProject\LogicLayerLibrary\obj\Debug\netcoreapp3.1\LogicLayerLibrary.AssemblyInfoInputs.cache
 D:\eigenproject git\MarcoEigenProject\LogicLayerLibrary\obj\Debug\netcoreapp3.1\LogicLayerLibrary.AssemblyInfo.cs
+D:\eigenproject git\MarcoEigenProject\LogicLayerLibrary\bin\Debug\netcoreapp3.1\LogicLayerLibrary.pdb
+D:\eigenproject git\MarcoEigenProject\LogicLayerLibrary\obj\Debug\netcoreapp3.1\LogicLayerLibrary.csproj.CoreCompileInputs.cache
+D:\eigenproject git\MarcoEigenProject\LogicLayerLibrary\obj\Debug\netcoreapp3.1\LogicLayerLibrary.dll
+D:\eigenproject git\MarcoEigenProject\LogicLayerLibrary\obj\Debug\netcoreapp3.1\LogicLayerLibrary.pdb

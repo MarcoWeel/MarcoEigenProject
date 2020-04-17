@@ -4,10 +4,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eigenproject", "Eigenproject\Eigenproject.csproj", "{E5186933-FD88-40E6-9231-FFC2391B1B56}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4CCEB773-6CA8-498B-BA0F-FC6EAE0A601B} = {4CCEB773-6CA8-498B-BA0F-FC6EAE0A601B}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicLayerLibrary", "LogicLayerLibrary\LogicLayerLibrary.csproj", "{4CCEB773-6CA8-498B-BA0F-FC6EAE0A601B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayerLibrary", "DataLayerLibrary\DataLayerLibrary.csproj", "{BC714DC6-C881-4F54-B6B5-4DEFCD47DA9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayerLibrary", "DataLayerLibrary\DataLayerLibrary.csproj", "{BC714DC6-C881-4F54-B6B5-4DEFCD47DA9D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
