@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "nDjBjnzhT4kkhO5h8LoeCbspevQloY1/buPp9BJzOHqQIkqzsZFXcLco/tRVZFrA4gdvX+ZdbEZ5F31Iwyvv3g==",
+  "dgSpecHash": "AhbzokMElRPeXzmfJ1IT21/PW9YKrwycR1C1WVfWVp4x7MNVFjh+5H5K0ozg8b+mMAzhW0Xs2dQ5yGv2Gf5XJw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\marco\\source\\repos\\Eigenproject\\Eigenproject\\Eigenproject.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "D:\\eigenproject git\\MarcoEigenProject\\Eigenproject\\Eigenproject.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\marco\\.nuget\\packages\\dapper\\2.0.35\\dapper.2.0.35.nupkg.sha512",
+    "C:\\Users\\marco\\.nuget\\packages\\system.reflection.emit.lightweight\\4.7.0\\system.reflection.emit.lightweight.4.7.0.nupkg.sha512"
+  ],
   "logs": []
 }

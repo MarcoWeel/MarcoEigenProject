@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\eigenproject git\\MarcoEigenProject\\Eigenproject\\Eigenproject.csproj": {}
+    "D:\\eigenproject git\\MarcoEigenProject\\LogicLayerLibrary\\LogicLayerLibrary.csproj": {}
   },
   "projects": {
-    "D:\\eigenproject git\\MarcoEigenProject\\Eigenproject\\Eigenproject.csproj": {
+    "D:\\eigenproject git\\MarcoEigenProject\\LogicLayerLibrary\\LogicLayerLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\eigenproject git\\MarcoEigenProject\\Eigenproject\\Eigenproject.csproj",
-        "projectName": "Eigenproject",
-        "projectPath": "D:\\eigenproject git\\MarcoEigenProject\\Eigenproject\\Eigenproject.csproj",
+        "projectUniqueName": "D:\\eigenproject git\\MarcoEigenProject\\LogicLayerLibrary\\LogicLayerLibrary.csproj",
+        "projectName": "LogicLayerLibrary",
+        "projectPath": "D:\\eigenproject git\\MarcoEigenProject\\LogicLayerLibrary\\LogicLayerLibrary.csproj",
         "packagesPath": "C:\\Users\\marco\\.nuget\\packages\\",
-        "outputPath": "D:\\eigenproject git\\MarcoEigenProject\\Eigenproject\\obj\\",
+        "outputPath": "D:\\eigenproject git\\MarcoEigenProject\\LogicLayerLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -40,12 +40,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "dependencies": {
-            "Dapper": {
-              "target": "Package",
-              "version": "[2.0.35, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
@@ -57,9 +51,6 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
