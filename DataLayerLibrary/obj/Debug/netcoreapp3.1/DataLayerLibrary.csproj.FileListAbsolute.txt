@@ -1,9 +1,12 @@
 D:\eigenproject git\MarcoEigenProject\DataLayerLibrary\bin\Debug\netcoreapp3.1\DataLayerLibrary.deps.json
 D:\eigenproject git\MarcoEigenProject\DataLayerLibrary\bin\Debug\netcoreapp3.1\DataLayerLibrary.dll
-D:\eigenproject git\MarcoEigenProject\DataLayerLibrary\obj\Debug\netcoreapp3.1\DataLayerLibrary.csprojAssemblyReference.cache
 D:\eigenproject git\MarcoEigenProject\DataLayerLibrary\obj\Debug\netcoreapp3.1\DataLayerLibrary.AssemblyInfoInputs.cache
 D:\eigenproject git\MarcoEigenProject\DataLayerLibrary\obj\Debug\netcoreapp3.1\DataLayerLibrary.AssemblyInfo.cs
 D:\eigenproject git\MarcoEigenProject\DataLayerLibrary\bin\Debug\netcoreapp3.1\DataLayerLibrary.pdb
 D:\eigenproject git\MarcoEigenProject\DataLayerLibrary\obj\Debug\netcoreapp3.1\DataLayerLibrary.csproj.CoreCompileInputs.cache
 D:\eigenproject git\MarcoEigenProject\DataLayerLibrary\obj\Debug\netcoreapp3.1\DataLayerLibrary.dll
 D:\eigenproject git\MarcoEigenProject\DataLayerLibrary\obj\Debug\netcoreapp3.1\DataLayerLibrary.pdb
+D:\eigenproject git\MarcoEigenProject\DataLayerLibrary\bin\Debug\netcoreapp3.1\LogicLayerLibrary.dll
+D:\eigenproject git\MarcoEigenProject\DataLayerLibrary\bin\Debug\netcoreapp3.1\LogicLayerLibrary.pdb
+D:\eigenproject git\MarcoEigenProject\DataLayerLibrary\obj\Debug\netcoreapp3.1\DataLayerLibrary.csprojAssemblyReference.cache
+D:\eigenproject git\MarcoEigenProject\DataLayerLibrary\obj\Debug\netcoreapp3.1\DataLayerLibrary.csproj.CopyComplete

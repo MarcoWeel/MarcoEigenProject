@@ -2236,6 +2236,7 @@
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "Dapper": "2.0.35",
+          "LogicLayerLibrary": "1.0.0",
           "MySql.Data": "8.0.19"
         },
         "compile": {
@@ -2243,6 +2244,19 @@
         },
         "runtime": {
           "bin/placeholder/DataLayerLibrary.dll": {}
+        }
+      },
+      "LogicLayerLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Dapper": "2.0.35"
+        },
+        "compile": {
+          "bin/placeholder/LogicLayerLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LogicLayerLibrary.dll": {}
         }
       }
     }
@@ -7279,6 +7293,11 @@
       "type": "project",
       "path": "../DataLayerLibrary/DataLayerLibrary.csproj",
       "msbuildProject": "../DataLayerLibrary/DataLayerLibrary.csproj"
+    },
+    "LogicLayerLibrary/1.0.0": {
+      "type": "project",
+      "path": "../LogicLayerLibrary/LogicLayerLibrary.csproj",
+      "msbuildProject": "../LogicLayerLibrary/LogicLayerLibrary.csproj"
     }
   },
   "projectFileDependencyGroups": {

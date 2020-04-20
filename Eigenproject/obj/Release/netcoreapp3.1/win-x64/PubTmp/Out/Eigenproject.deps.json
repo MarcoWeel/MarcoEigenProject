@@ -3034,10 +3034,19 @@
       "DataLayerLibrary/1.0.0": {
         "dependencies": {
           "Dapper": "2.0.35",
+          "LogicLayerLibrary": "1.0.0",
           "MySql.Data": "8.0.19"
         },
         "compile": {
           "DataLayerLibrary.dll": {}
+        }
+      },
+      "LogicLayerLibrary/1.0.0": {
+        "dependencies": {
+          "Dapper": "2.0.35"
+        },
+        "compile": {
+          "LogicLayerLibrary.dll": {}
         }
       }
     },
@@ -4905,10 +4914,19 @@
       "DataLayerLibrary/1.0.0": {
         "dependencies": {
           "Dapper": "2.0.35",
+          "LogicLayerLibrary": "1.0.0",
           "MySql.Data": "8.0.19"
         },
         "runtime": {
           "DataLayerLibrary.dll": {}
+        }
+      },
+      "LogicLayerLibrary/1.0.0": {
+        "dependencies": {
+          "Dapper": "2.0.35"
+        },
+        "runtime": {
+          "LogicLayerLibrary.dll": {}
         }
       }
     }
@@ -6012,6 +6030,11 @@
       "hashPath": "system.xml.xpath.xmldocument.4.0.1.nupkg.sha512"
     },
     "DataLayerLibrary/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LogicLayerLibrary/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

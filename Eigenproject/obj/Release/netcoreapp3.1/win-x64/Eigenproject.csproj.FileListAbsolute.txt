@@ -120,3 +120,7 @@ D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Release\netcoreapp3.1\win
 D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Release\netcoreapp3.1\win-x64\Eigenproject.dll
 D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Release\netcoreapp3.1\win-x64\Eigenproject.pdb
 D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Release\netcoreapp3.1\win-x64\Eigenproject.genruntimeconfig.cache
+D:\eigenproject git\MarcoEigenProject\Eigenproject\bin\Release\netcoreapp3.1\win-x64\LogicLayerLibrary.dll
+D:\eigenproject git\MarcoEigenProject\Eigenproject\bin\Release\netcoreapp3.1\win-x64\LogicLayerLibrary.pdb
+D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Release\netcoreapp3.1\win-x64\Eigenproject.csprojAssemblyReference.cache
+D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Release\netcoreapp3.1\win-x64\Razor\Views\User\LoginUser.cshtml.g.cs

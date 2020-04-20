@@ -11,6 +11,7 @@ namespace DataLayerLibrary.DataModels
         public DateTime DateOfBirth { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
+        public string Salt { get; set; }
         public DateTime CreationDate { get; set; }
         public int Points { get; set; }
     }

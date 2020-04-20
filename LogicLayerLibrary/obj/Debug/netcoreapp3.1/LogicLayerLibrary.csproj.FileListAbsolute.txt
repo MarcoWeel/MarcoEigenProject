@@ -6,3 +6,4 @@ D:\eigenproject git\MarcoEigenProject\LogicLayerLibrary\bin\Debug\netcoreapp3.1\
 D:\eigenproject git\MarcoEigenProject\LogicLayerLibrary\obj\Debug\netcoreapp3.1\LogicLayerLibrary.csproj.CoreCompileInputs.cache
 D:\eigenproject git\MarcoEigenProject\LogicLayerLibrary\obj\Debug\netcoreapp3.1\LogicLayerLibrary.dll
 D:\eigenproject git\MarcoEigenProject\LogicLayerLibrary\obj\Debug\netcoreapp3.1\LogicLayerLibrary.pdb
+D:\eigenproject git\MarcoEigenProject\LogicLayerLibrary\obj\Debug\netcoreapp3.1\LogicLayerLibrary.csprojAssemblyReference.cache

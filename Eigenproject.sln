@@ -11,6 +11,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicLayerLibrary", "LogicLayerLibrary\LogicLayerLibrary.csproj", "{4CCEB773-6CA8-498B-BA0F-FC6EAE0A601B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayerLibrary", "DataLayerLibrary\DataLayerLibrary.csproj", "{BC714DC6-C881-4F54-B6B5-4DEFCD47DA9D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4CCEB773-6CA8-498B-BA0F-FC6EAE0A601B} = {4CCEB773-6CA8-498B-BA0F-FC6EAE0A601B}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

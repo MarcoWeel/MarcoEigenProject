@@ -1841,6 +1841,7 @@
       "DataLayerLibrary/1.0.0": {
         "dependencies": {
           "Dapper": "2.0.35",
+          "LogicLayerLibrary": "1.0.0",
           "MySql.Data": "8.0.19"
         },
         "runtime": {
@@ -1848,6 +1849,17 @@
         },
         "compile": {
           "DataLayerLibrary.dll": {}
+        }
+      },
+      "LogicLayerLibrary/1.0.0": {
+        "dependencies": {
+          "Dapper": "2.0.35"
+        },
+        "runtime": {
+          "LogicLayerLibrary.dll": {}
+        },
+        "compile": {
+          "LogicLayerLibrary.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/3.1.0.0": {
@@ -4461,6 +4473,11 @@
       "hashPath": "system.xml.xpath.xmldocument.4.0.1.nupkg.sha512"
     },
     "DataLayerLibrary/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LogicLayerLibrary/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

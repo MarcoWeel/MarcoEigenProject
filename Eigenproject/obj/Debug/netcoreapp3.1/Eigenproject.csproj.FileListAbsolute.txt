@@ -122,3 +122,6 @@ D:\eigenproject git\MarcoEigenProject\Eigenproject\bin\Debug\netcoreapp3.1\runti
 D:\eigenproject git\MarcoEigenProject\Eigenproject\bin\Debug\netcoreapp3.1\DataLayerLibrary.dll
 D:\eigenproject git\MarcoEigenProject\Eigenproject\bin\Debug\netcoreapp3.1\DataLayerLibrary.pdb
 D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Debug\netcoreapp3.1\Razor\Views\User\RegisterUser.cshtml.g.cs
+D:\eigenproject git\MarcoEigenProject\Eigenproject\bin\Debug\netcoreapp3.1\LogicLayerLibrary.dll
+D:\eigenproject git\MarcoEigenProject\Eigenproject\bin\Debug\netcoreapp3.1\LogicLayerLibrary.pdb
+D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Debug\netcoreapp3.1\Razor\Views\User\LoginUser.cshtml.g.cs

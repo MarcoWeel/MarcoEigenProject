@@ -7,3 +7,6 @@ D:\eigenproject git\MarcoEigenProject\DataLayerLibrary\obj\Release\netcoreapp3.1
 D:\eigenproject git\MarcoEigenProject\DataLayerLibrary\obj\Release\netcoreapp3.1\DataLayerLibrary.AssemblyInfo.cs
 D:\eigenproject git\MarcoEigenProject\DataLayerLibrary\obj\Release\netcoreapp3.1\DataLayerLibrary.dll
 D:\eigenproject git\MarcoEigenProject\DataLayerLibrary\obj\Release\netcoreapp3.1\DataLayerLibrary.pdb
+D:\eigenproject git\MarcoEigenProject\DataLayerLibrary\bin\Release\netcoreapp3.1\LogicLayerLibrary.dll
+D:\eigenproject git\MarcoEigenProject\DataLayerLibrary\bin\Release\netcoreapp3.1\LogicLayerLibrary.pdb
+D:\eigenproject git\MarcoEigenProject\DataLayerLibrary\obj\Release\netcoreapp3.1\DataLayerLibrary.csproj.CopyComplete

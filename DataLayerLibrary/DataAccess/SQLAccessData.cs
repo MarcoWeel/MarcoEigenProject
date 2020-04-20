@@ -31,6 +31,14 @@ namespace DataLayerLibrary.DataAccess
             }
         }
 
+        public static T LoadFirstEntry<T>(string sql)
+        {
+            using (IDbConnection con = new MySqlConnection(GetConnectionString()))
+            {
+                return con.Query<T>(sql).First();
+            }
+        }
+
         public static void DeleteData(string sql)
         {
             using (IDbConnection con = new MySqlConnection(GetConnectionString()))
