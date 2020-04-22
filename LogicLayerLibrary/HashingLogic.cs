@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 
 namespace LogicLayerLibrary
 {
-    public class CreateHash
+    public class HashingLogic
     {
         private static readonly int iterations = 1000;
         public static string GenerateSalt()
@@ -35,7 +35,6 @@ namespace LogicLayerLibrary
                 return true;
             }
             return false;
-            
         }
     }
 }

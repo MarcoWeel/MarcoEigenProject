@@ -10,7 +10,6 @@ namespace DataLayerLibrary.DataLogic
 {
     public class UserProcessor
     {
-
         public static void CreateUser(string email, DateTime dateOfBirth, string password, string userName, string salt)
         {
             UserDataModel data = new UserDataModel
@@ -42,7 +41,7 @@ namespace DataLayerLibrary.DataLogic
 
         public static void DeleteUser(int id)
         {
-            string sql = $"DELETE FROM user WHERE User_Id = '{id}';";
+            string sql = $"DELETE FROM user WHERE Id = '{id}';";
             SQLAccessData.DeleteData(sql);
         }
     }

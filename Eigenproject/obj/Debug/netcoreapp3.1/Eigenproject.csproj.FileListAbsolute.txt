@@ -125,3 +125,5 @@ D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Debug\netcoreapp3.1\Razor
 D:\eigenproject git\MarcoEigenProject\Eigenproject\bin\Debug\netcoreapp3.1\LogicLayerLibrary.dll
 D:\eigenproject git\MarcoEigenProject\Eigenproject\bin\Debug\netcoreapp3.1\LogicLayerLibrary.pdb
 D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Debug\netcoreapp3.1\Razor\Views\User\LoginUser.cshtml.g.cs
+D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Debug\netcoreapp3.1\Razor\Views\Post\CreatePost.cshtml.g.cs
+D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Debug\netcoreapp3.1\Razor\Views\Post\ViewPosts.cshtml.g.cs

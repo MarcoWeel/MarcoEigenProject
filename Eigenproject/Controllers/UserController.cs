@@ -23,8 +23,8 @@ namespace Eigenproject.Controllers
         {
             if (ModelState.IsValid)
             {
-                string salt = CreateHash.GenerateSalt();
-                string password = CreateHash.GenerateHash(salt, user.Password);
+                string salt = HashingLogic.GenerateSalt();
+                string password = HashingLogic.GenerateHash(salt, user.Password);
                 UserProcessor.CreateUser(
                     user.Email,
                     user.DateOfBirth,
@@ -48,8 +48,8 @@ namespace Eigenproject.Controllers
         public IActionResult LoginUser(LoginUserModel login)
         {
             UserDataModel userData = UserProcessor.GetUserByUserName(login.Username);
-            bool isvalid = CreateHash.CheckPassword(userData.Salt, userData.Password, login.Password);
-            if (isvalid)
+            bool isValid = HashingLogic.CheckPassword(userData.Salt, userData.Password, login.Password);
+            if (isValid)
             {
                return RedirectToAction("index", "Home");
             }

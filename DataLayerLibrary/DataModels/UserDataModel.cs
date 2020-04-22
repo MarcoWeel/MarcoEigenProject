@@ -6,7 +6,7 @@ namespace DataLayerLibrary.DataModels
 {
     public class UserDataModel
     {
-        public int User_Id { get; set; }
+        public int Id { get; set; } //gwn ID neerzetten en bij foreign key wel user_Id neerzetten
         public string Email { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string UserName { get; set; }
