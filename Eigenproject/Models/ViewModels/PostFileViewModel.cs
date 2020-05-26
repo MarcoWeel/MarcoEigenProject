@@ -21,9 +21,8 @@ namespace Eigenproject.Models.ViewModels
         [Display(Name = "Genre")]
         public string Genre { get; set; }
 
-        [DataType(DataType.Upload)]
         [Display(Name = "Upload bestand")]
         [Required(ErrorMessage = "Voeg een bestand toe")]
-        public IFormFile File { get; set; }
+        public string File { get; set; }
     }
 }

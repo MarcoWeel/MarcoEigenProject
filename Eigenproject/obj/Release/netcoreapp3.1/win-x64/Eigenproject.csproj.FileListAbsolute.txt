@@ -124,3 +124,5 @@ D:\eigenproject git\MarcoEigenProject\Eigenproject\bin\Release\netcoreapp3.1\win
 D:\eigenproject git\MarcoEigenProject\Eigenproject\bin\Release\netcoreapp3.1\win-x64\LogicLayerLibrary.pdb
 D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Release\netcoreapp3.1\win-x64\Eigenproject.csprojAssemblyReference.cache
 D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Release\netcoreapp3.1\win-x64\Razor\Views\User\LoginUser.cshtml.g.cs
+D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Release\netcoreapp3.1\win-x64\Razor\Views\Post\CreatePost.cshtml.g.cs
+D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Release\netcoreapp3.1\win-x64\Razor\Views\Post\ViewPosts.cshtml.g.cs

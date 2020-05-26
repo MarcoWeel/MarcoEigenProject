@@ -20,15 +20,15 @@ namespace DataLayerLibrary.DataLogic
 
         public static FileDataModel LoadFile(int Id)
         {
-            string sql = $"SELECT * FROM file WHERE File_Id = '{Id}'";
+            string sql = $"SELECT * FROM file WHERE File_Id = '{Id}';";
             return SQLAccessData.LoadFirstEntry<FileDataModel>(sql);
         }
 
-        public static int GetFileId(string location)
+        public static int GetFileId()
         {
-            string sql = $"SELECT * FROM file WHERE File_Location = '{location}'";
-            var data = SQLAccessData.LoadFirstEntry<FileDataModel>(sql);
-            return data.Id;
+            string sql = $"SELECT MAX(File_Id) FROM file LIMIT 1;";
+            var data = SQLAccessData.LoadFirstEntry<int>(sql);
+            return data;
         }
     }
 }

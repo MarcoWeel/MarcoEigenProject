@@ -15,14 +15,13 @@ namespace DataLayerLibrary.DataLogic
                 Title = title,
                 Tags = tags,
                 CreationDate = DateTime.Now,
-                File_Id = 1,
+                File_Id = File_Id,
                 Genre = genre,
                 Likes = 0,
                 User_Id = user_Id
 
             };
-            string sql = "INSERT INTO post (User_Id, Name, File_Id, Tags, Genre, Creationdate, Likes)" +
-                         "VALUES (@user_Id, @Title @File_Id, @Tags, @Genre, @ CreationDate, @Likes);";
+            string sql = "INSERT INTO post(User_Id, Title, File_Id, Tags, Genre, Creationdate, Likes) VALUES(@User_Id, @Title, @File_Id, @Tags, @Genre, @CreationDate, @Likes);";
             SQLAccessData.SaveData(sql, data);
         }
 
