@@ -7,52 +7,85 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="css/sidebar.css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500" rel="stylesheet">
+    <link  href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" rel="stylesheet">
+
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Eigenproject</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="RegisterUser">Registreer hier</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="LoginUser">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Post" asp-action="CreatePost">Plaats een post</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Post" asp-action="ViewPostsold">Posts</a>
-                        </li>
-                    </ul>
-                </div>
+<div class="container">
+    <main role="main" class="pb-3">
+        <div id="viewport">
+            <!-- Sidebar -->
+            <div id="sidebar">
+                <header>
+                    <a href="#">My App</a>
+                </header>
+                <ul class="nav">
+                    <li>
+                        <a href="#">
+                            <i class="zmdi zmdi-view-dashboard"></i> Main Page
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="zmdi zmdi-link"></i> Account
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="zmdi zmdi-widgets"></i> Overview
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="zmdi zmdi-calendar"></i> Events
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="zmdi zmdi-info-outline"></i> About
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="zmdi zmdi-settings"></i> Services
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="zmdi zmdi-comment-more"></i> Contact
+                        </a>
+                    </li>
+                </ul>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+            <!-- Content -->
+            <div id="content">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <ul class="nav navbar-nav navbar-right">
+                        </ul>
+                    </div>
+                </nav>
+                @*<div class="container-fluid">
+                    <h1>Simple Sidebar</h1>
+                    <p>
+                        Make sure to keep all page content within the 
+                        <code>#content</code>.
+                    </p>
+                </div>*@
+            </div>
+        </div>
 
-    <footer class="border-top footer text-muted">
+        @RenderBody()
+    </main>
+</div>
+
+
+@*<footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2020 - Eigenproject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
+    </footer>*@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
