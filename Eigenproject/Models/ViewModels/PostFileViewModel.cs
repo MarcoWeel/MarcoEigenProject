@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -21,7 +22,7 @@ namespace Eigenproject.Models.ViewModels
         [Display(Name = "Genre")]
         public string Genre { get; set; }
 
-        [Display(Name = "Upload bestand")]
+        [Display(Name = "File")]
         [Required(ErrorMessage = "Voeg een bestand toe")]
         public string File { get; set; }
     }

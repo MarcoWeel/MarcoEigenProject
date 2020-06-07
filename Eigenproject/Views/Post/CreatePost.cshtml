@@ -1,6 +1,7 @@
-﻿@model Eigenproject.Models.ViewModels.PostFileViewModel
+﻿@model Eigenproject.Models.ViewModels.PostFileUploadViewModel
 
 @{
+    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "CreatePost";
 }
 
@@ -52,7 +53,6 @@
                     var fileName = $(this).val().split("\\").pop();
                     $(this).next('.custom-file-label').html(fileName);
                 });
-        }
-        )
+        })
     </script>
 }

@@ -126,3 +126,4 @@ D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Debug\netcoreapp3.1\win-x
 D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Debug\netcoreapp3.1\win-x64\Eigenproject.dll
 D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Debug\netcoreapp3.1\win-x64\Eigenproject.pdb
 D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Debug\netcoreapp3.1\win-x64\Eigenproject.genruntimeconfig.cache
+D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Debug\netcoreapp3.1\win-x64\Razor\Views\Post\ViewPostsold.cshtml.g.cs

@@ -35,7 +35,14 @@ namespace DataLayerLibrary.DataAccess
         {
             using (IDbConnection con = new MySqlConnection(GetConnectionString()))
             {
-                return con.Query<T>(sql).First();
+                try
+                {
+                    return con.Query<T>(sql).First();
+                }
+                catch (InvalidCastException e)
+                {
+                    return default;
+                }
             }
         }
 

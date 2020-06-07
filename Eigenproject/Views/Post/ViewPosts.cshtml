@@ -1,15 +1,29 @@
-﻿@model IEnumerable<Eigenproject.Models.ViewModels.PostFileViewModel>
+﻿@using System.IO
+@using Microsoft.AspNetCore.Http
+@model IEnumerable<Eigenproject.Models.ViewModels.PostFileViewModel>
 
 @{
+    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "ViewPosts";
 }
 
-<h1>ViewPosts</h1>
+
+<h1 style="padding-top: 50px">ViewPosts</h1>
 
 <p>
     <a asp-action="CreatePost">Create New</a>
 </p>
-<table class="table">
+@foreach (var item in Model)
+{
+    string path = item.File;
+    var extension = System.IO.Path.GetExtension(path);
+<div class="postBox">
+    <h5 class="center">@item.Title</h5>
+    <img src="@path" class="centerImage"/>
+</div>
+}
+
+@*<table class="table">
     <thead>
         <tr>
             <th>
@@ -31,8 +45,15 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
+@foreach (var item in Model)
+{
+    string path = item.File;
+    var extension = System.IO.Path.GetExtension(path);
+    <div class="postBox">
+
+    </div>
+
+    <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
@@ -45,8 +66,15 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Genre)
             </td>
+            @if (extension == ".png")
+            {
+                <td>
+                    <img src="@path"/>
+                </td>
+            }
             <td>
                 @Html.DisplayFor(modelItem => item.File)
+                <img />
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
@@ -56,4 +84,4 @@
         </tr>
 }
     </tbody>
-</table>
+</table>*@

@@ -46,8 +46,8 @@ namespace Eigenproject.Controllers
                     post.File.CopyTo(new FileStream(path, FileMode.Create));
 
                     int file_id = FileProcessor.GetFileId() + 1;
-
-                    FileProcessor.CreateFile(path.Replace(@"\", @"\\"));
+                    string DBFileName = "../images/" + uniqueFileName;
+                    FileProcessor.CreateFile(DBFileName);
 
                     PostProcessor.CreatePost
                     (
@@ -93,13 +93,13 @@ namespace Eigenproject.Controllers
             List<PostFileViewModel> posts = new List<PostFileViewModel>();
             foreach (var post in data)
             {
-                FileDataModel FileLocation = FileProcessor.LoadFile(post.File_Id);
+                string FileLocation = FileProcessor.LoadFilePath(post.File_Id);
                 posts.Add(new PostFileViewModel
                 {
                     Title = post.Title,
                     Tags = post.Tags,
                     Genre = post.Genre,
-                    File = FileLocation.Location
+                    File = FileLocation
                 });
             }
             return View(posts);
