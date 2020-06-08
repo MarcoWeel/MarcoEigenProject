@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using DataLayerLibrary.DataLogic;
 using DataLayerLibrary.DataModels;
 using Eigenproject.Models;
 using Microsoft.AspNetCore.Mvc;
 using LogicLayerLibrary;
+using Microsoft.AspNetCore.Authentication;
 
 namespace Eigenproject.Controllers
 {
@@ -51,9 +53,25 @@ namespace Eigenproject.Controllers
             bool isValid = HashingLogic.CheckPassword(userData.Salt, userData.Password, login.Password);
             if (isValid)
             {
-               return RedirectToAction("index", "Home");
+                var UserClaims = new List<Claim>()
+                {
+                    new Claim(ClaimTypes.Name, userData.UserName),
+                };
+
+                var UserIdentity = new ClaimsIdentity(UserClaims, "User Identity");
+                var UserPrincipal = new ClaimsPrincipal(new[] { UserIdentity });
+
+                HttpContext.SignInAsync(UserPrincipal);
+                return RedirectToAction("index", "Home");
             }
             return View();
+
+        }
+
+        public IActionResult UpdateUser(UserModel model)
+        {
+
+
 
         }
     }

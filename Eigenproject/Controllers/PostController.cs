@@ -9,6 +9,7 @@ using DataLayerLibrary.DataLogic;
 using DataLayerLibrary.DataModels;
 using Eigenproject.Models;
 using Eigenproject.Models.ViewModels;
+using LogicLayerLibrary.ExtensionMethods;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -54,7 +55,7 @@ namespace Eigenproject.Controllers
                         post.Title,
                         post.Tags,
                         post.Genre,
-                        1,
+                        HttpContext.GetCurrentUserModel().User_Id,
                         file_id
                     );
                 }
@@ -76,7 +77,7 @@ namespace Eigenproject.Controllers
                     CreationDate = post.CreationDate,
                     File_Id = post.File_Id,
                     Genre = post.Genre,
-                    Id = post.Id,
+                    Id = post.Post_Id,
                     Likes = post.Likes,
                     Tags = post.Tags,
                     User_Id = post.User_Id
@@ -99,10 +100,28 @@ namespace Eigenproject.Controllers
                     Title = post.Title,
                     Tags = post.Tags,
                     Genre = post.Genre,
-                    File = FileLocation
+                    File = FileLocation,
+                    ID = post.Post_Id,
+                    Likes = post.Likes
                 });
             }
             return View(posts);
+        }
+
+        [HttpPost]
+        public IActionResult AddLike([FromBody] string postId)
+        {
+            PostProcessor.AddALikeToPost(Convert.ToInt32(postId));
+            var data = PostProcessor.GetLikesOfPost(Convert.ToInt32(postId));
+            return  Json(data);
+        }
+
+        [HttpPost]
+        public IActionResult RemoveLike([FromBody] string postId)
+        {
+            PostProcessor.RemoveALikeFromPost(Convert.ToInt32(postId));
+            var data = PostProcessor.GetLikesOfPost(Convert.ToInt32(postId));
+            return Json(data);
         }
     }
 }

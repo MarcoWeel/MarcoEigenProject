@@ -30,5 +30,25 @@ namespace DataLayerLibrary.DataLogic
             string sql = "SELECT * FROM post";
             return SQLAccessData.LoadData<PostDataModel>(sql);
         }
+
+        public static void AddALikeToPost(int postId)
+        {
+            var data = postId;
+            string sql = $"Update post set likes = likes + 1 WHERE Post_Id = '{postId}';";
+            SQLAccessData.SaveData(sql, data);
+        }
+
+        public static void RemoveALikeFromPost(int postId)
+        {
+            var data = postId;
+            string sql = $"Update post set likes = likes - 1 WHERE Post_Id = '{postId}';";
+            SQLAccessData.SaveData(sql, data);
+        }
+
+        public static int GetLikesOfPost(int post_Id)
+        {
+            string sql = $"Select likes FROM post WHERE Post_Id = '{post_Id}';";
+            return SQLAccessData.LoadFirstEntry<int>(sql);
+        }
     }
 }

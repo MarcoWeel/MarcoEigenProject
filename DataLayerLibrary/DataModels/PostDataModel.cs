@@ -12,7 +12,7 @@ namespace DataLayerLibrary.DataModels
         public string Tags { get; set; }
         public string Genre { get; set; }
         public DateTime CreationDate { get; set; }
-        public int Id { get; set; }
+        public int Post_Id { get; set; }
         public int Likes { get; set; }
     }
 }

@@ -128,3 +128,9 @@ D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Debug\netcoreapp3.1\Razor
 D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Debug\netcoreapp3.1\Razor\Views\Post\CreatePost.cshtml.g.cs
 D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Debug\netcoreapp3.1\Razor\Views\Post\ViewPostsold.cshtml.g.cs
 D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Debug\netcoreapp3.1\Razor\Views\Post\ViewPosts.cshtml.g.cs
+D:\eigenproject git\MarcoEigenProject\Eigenproject\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authorization.dll
+D:\eigenproject git\MarcoEigenProject\Eigenproject\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Metadata.dll
+D:\eigenproject git\MarcoEigenProject\Eigenproject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\eigenproject git\MarcoEigenProject\Eigenproject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
+D:\eigenproject git\MarcoEigenProject\Eigenproject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
+D:\eigenproject git\MarcoEigenProject\Eigenproject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll

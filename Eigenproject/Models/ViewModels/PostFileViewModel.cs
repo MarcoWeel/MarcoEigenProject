@@ -25,5 +25,7 @@ namespace Eigenproject.Models.ViewModels
         [Display(Name = "File")]
         [Required(ErrorMessage = "Voeg een bestand toe")]
         public string File { get; set; }
+        public int ID { get; set; }
+        public int Likes { get; set; }
     }
 }

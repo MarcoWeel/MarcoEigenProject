@@ -9,13 +9,13 @@ body {
 
 /* Toggle Styles */
 
-#viewport {
+/*#viewport {
     padding-left: 250px;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
-}
+}*/
 
 #content {
     width: 100%;
@@ -25,7 +25,7 @@ body {
 
 /* Sidebar Styles */
 
-#sidebar {
+#sidebarRight {
     z-index: 1000;
     position: fixed;
     right: 0px;
@@ -40,27 +40,27 @@ body {
     transition: all 0.5s ease;
 }
 
-#sidebar header {
+#sidebarRight header {
     background-color: #263238;
     font-size: 25px;
     line-height: 52px;
     text-align: center;
 }
 
-#sidebar header a {
+#sidebarRight header a {
     color: #fff;
     display: block;
     text-decoration: none;
 }
 
-#sidebar header a:hover {
+#sidebarRight header a:hover {
     color: #fff;
 }
 
-#sidebar .nav {
+#sidebarRight .nav {
 }
 
-#sidebar .nav a {
+#sidebarRight .nav a {
     background: none;
     border-bottom: 1px solid #455A64;
     color: #CFD8DC;
@@ -68,11 +68,11 @@ body {
     padding: 10px 45px;
 }
 
-#sidebar .nav a:hover {
+#sidebarRight .nav a:hover {
     background: none;
     color: #ECEFF1;
 }
 
-#sidebar .nav a i {
+#sidebarRight .nav a i {
     margin-right: 16px;
 }
