@@ -18,7 +18,7 @@ namespace LogicLayerLibrary.ExtensionMethods
             {
                 Email = dataModel.Email,
                 Points = dataModel.Points,
-                User_Id = dataModel.Id,
+                User_Id = dataModel.User_Id,
                 UserName = dataModel.UserName
             };
             return model;

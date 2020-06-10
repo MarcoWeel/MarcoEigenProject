@@ -68,11 +68,26 @@ namespace Eigenproject.Controllers
 
         }
 
+        public IActionResult UpdateUser(string username)
+        {
+            var model = UserProcessor.GetUserByUserName(username);
+            var data = new UserModel
+            {
+                Email = model.Email,
+                Password = model.Password,
+                UserName = model.UserName,
+                User_Id = model.User_Id
+            };
+
+            return View(data);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult UpdateUser(UserModel model)
         {
-
-
-
+            UserProcessor.UpdateUser(model.Email, model.Password, model.UserName);
+            return RedirectToAction("ViewPosts", "Post");
         }
     }
 }
