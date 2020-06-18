@@ -1,0 +1,8 @@
+﻿@model IEnumerable<Eigenproject.Models.TagModel>
+
+
+<h1>Popular Tags</h1>
+@foreach (var item in Model)
+{
+    @item.Name
+}

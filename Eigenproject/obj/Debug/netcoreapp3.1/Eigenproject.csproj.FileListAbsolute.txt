@@ -134,3 +134,11 @@ D:\eigenproject git\MarcoEigenProject\Eigenproject\bin\Debug\netcoreapp3.1\Micro
 D:\eigenproject git\MarcoEigenProject\Eigenproject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
 D:\eigenproject git\MarcoEigenProject\Eigenproject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
 D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Debug\netcoreapp3.1\Razor\Views\User\UpdateUser.cshtml.g.cs
+D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Debug\netcoreapp3.1\Razor\Views\User\DetailsUser.cshtml.g.cs
+D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Debug\netcoreapp3.1\Razor\Views\Subscription\GetListOfSubscriptionViaUserId.cshtml.g.cs
+D:\eigenproject git\MarcoEigenProject\Eigenproject\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+D:\eigenproject git\MarcoEigenProject\Eigenproject\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
+D:\eigenproject git\MarcoEigenProject\Eigenproject\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
+D:\eigenproject git\MarcoEigenProject\Eigenproject\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\GenreSidebar\Default.cshtml.g.cs
+D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\TagSidebar\Default.cshtml.g.cs

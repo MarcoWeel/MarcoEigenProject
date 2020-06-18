@@ -1,9 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@using LogicLayerLibrary.ExtensionMethods
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Eigenproject</title>
+    <title>@ViewData["Title"] - GamerHaven</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/sidebar.css" />
@@ -16,136 +18,131 @@
 
 </head>
 <body>
-<div class="wrap">
-    <div class="search">
-        <input type="text" class="searchTerm" placeholder="What are you looking for?">
-        <button type="submit" class="searchButton">
-            <i class="fa fa-search"></i>
-        </button>
-    </div>
-</div>
-<div class="searchBox">
-</div>
-
-<div class="container">
-    <main role="main" class="pb-3">
-        <div id="viewport">
-
-            <!-- SidebarRight -->
-            <div id="sidebarRight">
-                <header>
-                    @Html.ActionLink("Login", "LoginUser", "User")
-                </header>
-                <ul class="nav">
-                    <li>
-                        <a href="#">
-                            <i class="zmdi zmdi-view-dashboard"></i> Main Page
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="zmdi zmdi-link"></i> Account
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="zmdi zmdi-widgets"></i> Overview
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="zmdi zmdi-calendar"></i> Events
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="zmdi zmdi-info-outline"></i> About
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="zmdi zmdi-settings"></i> Services
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="zmdi zmdi-comment-more"></i> Contact
-                        </a>
-                    </li>
-                </ul>
+    <form asp-controller="Post" asp-action="GetPostsByTitle" name="myForm" onsubmit="return validateForm()" method="get" required>
+        <div class="wrap">
+            <div class="search">
+                <input type="text" class="searchTerm" placeholder="Find posts" name="title">
+                <button type="submit" value="save" class="searchButton">
+                        <i class="fa fa-search"></i>
+                    </button>
             </div>
-
-            <!-- Sidebar -->
-            <div id="sidebar">
-                <header>
-                    <a href="#">My App</a>
-                </header>
-                <ul class="nav">
-                    <li>
-                        <a href="#">
-                            <i class="zmdi zmdi-view-dashboard"></i> Main Page
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="zmdi zmdi-link"></i> Account
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="zmdi zmdi-widgets"></i> Overview
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="zmdi zmdi-calendar"></i> Events
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="zmdi zmdi-info-outline"></i> About
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="zmdi zmdi-settings"></i> Services
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="zmdi zmdi-comment-more"></i> Contact
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <!-- Content -->
-            @*<div id="content">
-                <nav class="navbar navbar-default">
-                    <div class="container-fluid">
-                        <ul class="nav navbar-nav navbar-right">
-                        </ul>
-                    </div>
-                </nav>
-                <div class="container-fluid">
-                    <h1>Simple Sidebar</h1>
-                            <p>
-                                Make sure to keep all page content within the
-                                <code>#content</code>.
-                            </p>
-                </div>
-            </div>*@
         </div>
-        @RenderBody()
-    </main>
-</div>
-@*<footer class="border-top footer text-muted">
+    </form>
+    <div class="searchBox">
+    </div>
+
+
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            <div id="viewport">
+
+                <!-- SidebarRight -->
+                <div id="sidebarRight">
+                    @if (Context.GetCurrentUserModel() == null)
+                    {
+                        <header>
+                            @Html.ActionLink("Login", "LoginUser", "User")
+                        </header>
+                    }
+                    else
+                    {
+                        <header>
+                            @Html.ActionLink(@Context.GetCurrentUserModel().UserName, "DetailsUser", "User",  new {username = @Context.GetCurrentUserModel().UserName})
+                        </header>
+                    }
+                <ul class="nav">
+                    @await Component.InvokeAsync("GenreSidebar")
+                    @await Component.InvokeAsync("TagSidebar")
+                </ul>
+                </div>
+
+                <!-- Sidebar -->
+                <div id="sidebar">
+                    <header>
+                        <a asp-controller="Post" asp-action="ViewPosts">GamerHaven</a>
+                    </header>
+                    <ul class="nav">
+                        <li>
+                            <a asp-controller="Post" asp-action="ViewPosts">
+                                <i class="zmdi zmdi-view-dashboard"></i>Home
+                            </a>
+                        </li>
+                        @if (Context.GetCurrentUserModel() != null)
+                        {
+                            <li>
+                                <a asp-controller="User" asp-action="DetailsUser" asp-route-username="@Context.GetCurrentUserModel().UserName">
+                                    <i class="zmdi zmdi-link"></i>Account
+                                </a>
+                                
+                            </li>
+                            <li>
+                                <a asp-controller="Subscription" asp-action="GetListOfSubscriptionViaUserId" asp-route-user_Id="@Context.GetCurrentUserModel().User_Id">
+                                    <i class="zmdi zmdi-calendar"></i>Subscriptions
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="Post" asp-action="CreatePost">
+                                    <i class="zmdi zmdi-widgets"></i>Create Post
+                                </a>
+                            </li>
+
+                        }
+
+                        <li>
+                            <a href="#">
+                                <i class="zmdi zmdi-info-outline"></i>About
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="zmdi zmdi-settings"></i>Services
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="zmdi zmdi-comment-more"></i>Contact
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Content -->
+                @*<div id="content">
+                        <nav class="navbar navbar-default">
+                            <div class="container-fluid">
+                                <ul class="nav navbar-nav navbar-right">
+                                </ul>
+                            </div>
+                        </nav>
+                        <div class="container-fluid">
+                            <h1>Simple Sidebar</h1>
+                                    <p>
+                                        Make sure to keep all page content within the
+                                        <code>#content</code>.
+                                    </p>
+                        </div>
+                    </div>*@
+            </div>
+            @RenderBody()
+        </main>
+    </div>
+    @*<footer class="border-top footer text-muted">
             <div class="container">
                 &copy; 2020 - Eigenproject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
             </div>
         </footer>*@
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
-@RenderSection("Scripts", required: false)
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        function validateForm() {
+            var x = document.forms["myForm"]["title"].value;
+            if (x == "") {
+                alert("Name must be filled out");
+                return false;
+            }
+        }
+    </script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

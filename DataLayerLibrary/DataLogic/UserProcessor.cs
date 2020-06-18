@@ -33,9 +33,9 @@ namespace DataLayerLibrary.DataLogic
             return SQLAccessData.LoadData<UserDataModel>(sql);
         }
 
-        public static UserDataModel GetUserByUserName(string UserName)
+        public static UserDataModel GetUserByUserName(string userName)
         {
-            string sql = $"SELECT * FROM user WHERE Username = '{UserName}';";
+            string sql = $"SELECT * FROM user WHERE Username = '{userName}';";
             return SQLAccessData.LoadFirstEntry<UserDataModel>(sql);
         }
 

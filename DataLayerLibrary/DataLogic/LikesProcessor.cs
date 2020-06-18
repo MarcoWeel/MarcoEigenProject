@@ -14,18 +14,18 @@ namespace DataLayerLibrary.DataLogic
             {
                 Post_Id = post_Id,
                 User_Id = User_Id,
-                Type = type
+                type = type
             };
-            string sql = @"INSERT INTO likes (Post_Id, User_Id, Type) VALUES(@Post_Id, User_Id, Type);";
+            string sql = @"INSERT INTO likes(Post_Id, User_Id, type) VALUES(@Post_Id, @User_Id, @type);";
             SQLAccessData.SaveData(sql,data);
         }
 
         public static bool? CheckIfLikedOrDisliked(int User_Id, int Post_Id)
         {
-            string sql = $"SELECT Type FROM likes WHERE Post_Id = '{Post_Id}' AND User_Id = '{User_Id}';";
+            string sql = $"SELECT type FROM likes WHERE Post_Id = '{Post_Id}' AND User_Id = '{User_Id}';";
             try
             {
-                return SQLAccessData.LoadFirstEntry<bool>(sql);
+                return SQLAccessData.LoadFirstEntry<bool?>(sql);
             }
             catch (Exception e)
             {
@@ -45,10 +45,10 @@ namespace DataLayerLibrary.DataLogic
             {
                 Post_Id = post_Id,
                 User_Id = user_Id,
-                Type = type
+                type = type
             };
 
-            string sql = $"UPDATE likes SET Type = '{type}' WHERE Post_Id = '{post_Id}' AND User_Id = '{user_Id}';";
+            string sql = $"UPDATE likes SET type = '{type}' WHERE Post_Id = '{post_Id}' AND User_Id = '{user_Id}';";
             SQLAccessData.SaveData(sql, data);
         }
     }

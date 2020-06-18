@@ -1,4 +1,5 @@
 ﻿@using System.IO
+@using DataLayerLibrary.DataLogic
 @using LogicLayerLibrary.ExtensionMethods
 @using Microsoft.AspNetCore.Http
 @model IEnumerable<Eigenproject.Models.ViewModels.PostFileViewModel>
@@ -19,22 +20,55 @@
     var oldLikeAmount = item.Likes;
     string path = item.File;
     var extension = System.IO.Path.GetExtension(path);
-    <div class="postBox">
-        <h5 class="center">@item.Title</h5>
+    string type = "Genre";
+<div class="postBox">
+    @if (SubscriptionProcessor.GetSubscriptionStatus(Context.GetCurrentUserModel().User_Id, item.Genre))
+    {
+        <input style="display: none" value="@type" class="TypeInput" id="TypeInput" />
+        <input style="display: none" value="@item.Genre" id="GenreInput" />
+        <h5 class="center">@item.Title<button style="display: inline-block; float: right" class="btn-Follow" id="Follow">Follow Genre</button><button class="btn-Unfollow" style="display: none; float: right" id="Unfollow">Unfollow Genre</button></h5>
+    }
+    else
+    {
+        <input style="display: none" value="@item.Genre" id="GenreInput" />
+        <h5 class="center">@item.Title<button style="display: none; float: right" class="btn-Follow" id="Follow">Follow Genre</button><button class="btn-Unfollow" style="display: inline-block; float: right" id="Unfollow">Unfollow Genre</button></h5>
+    }
+    @if (extension == ".png" || extension == ".jpg" || extension == ".jpeg")
+    {
         <img src="@path" class="centerImage" />
-        @Context.GetCurrentUserModel().UserName
-        @*<button value="@item.ID" class="btn-primary btn-Like">button</button>*@
-        @if (oldLikeAmount == item.Likes)
-        {
-            <input type="image" src="Images/07b18101-b620-4815-8b46-0a63abee3403_tribal bitch (1).png" class="btn-Like" value="@item.ID" />
-        }
-        else
-        {
-            <input type="image" src="Images/8e934930-d2bc-4575-a8ad-03ba4f7f0ebf_achtergrond.png" class="btn-DisLike" value="@item.ID" />
-        }
-        <span class="Aantal-Likes">@item.Likes </span>
-    </div>
+    }
+    else
+    {
+        <video src="@path" class="centerImage"></video>
+    }
+
+
+    @Context.GetCurrentUserModel().UserName
+    @if (LikesProcessor.CheckIfLikedOrDisliked(Context.GetCurrentUserModel().User_Id, item.ID) == null)
+    {
+        <input type="image" src="Images/07b18101-b620-4815-8b46-0a63abee3403_tribal bitch (1).png" class="btn-Like" id="Like" value="@item.ID" />
+        <input type="image" src="Images/8e934930-d2bc-4575-a8ad-03ba4f7f0ebf_achtergrond.png" class="btn-DisLike" id="Dislike" value="@item.ID" />
+        <input type="image" src="Images/07b18101-b620-4815-8b46-0a63abee3403_tribal bitch (1).png" class="btn-ReturnLike" id="LikeReturn" style="display: none" value="@item.ID" />
+        <input type="image" src="Images/07b18101-b620-4815-8b46-0a63abee3403_tribal bitch (1).png" class="btn-ReturnLike" id="DislikeReturn" style="display: none" value="@item.ID" />
+    }
+    else if (LikesProcessor.CheckIfLikedOrDisliked(Context.GetCurrentUserModel().User_Id, item.ID) == true)
+    {
+        <input type="image" src="Images/07b18101-b620-4815-8b46-0a63abee3403_tribal bitch (1).png" class="btn-Like" id="Like" style="display: none" value="@item.ID" />
+        <input type="image" src="Images/8e934930-d2bc-4575-a8ad-03ba4f7f0ebf_achtergrond.png" class="btn-DisLike" id="Dislike" style="display: none" value="@item.ID" />
+        <input type="image" src="Images/07b18101-b620-4815-8b46-0a63abee3403_tribal bitch (1).png" class="btn-ReturnLike" id="LikeReturn" style="display: inline-block" value="@item.ID" />
+        <input type="image" src="Images/07b18101-b620-4815-8b46-0a63abee3403_tribal bitch (1).png" class="btn-ReturnLike" id="DislikeReturn" style="display: none" value="@item.ID" />
+    }
+    else
+    {
+        <input type="image" src="Images/07b18101-b620-4815-8b46-0a63abee3403_tribal bitch (1).png" class="btn-Like" id="Like" style="display: none" value="@item.ID" />
+        <input type="image" src="Images/8e934930-d2bc-4575-a8ad-03ba4f7f0ebf_achtergrond.png" class="btn-DisLike" id="Dislike" style="display: none" value="@item.ID" />
+        <input type="image" src="Images/07b18101-b620-4815-8b46-0a63abee3403_tribal bitch (1).png" class="btn-ReturnLike" id="LikeReturn" style="display: none" value="@item.ID" />
+        <input type="image" src="Images/07b18101-b620-4815-8b46-0a63abee3403_tribal bitch (1).png" class="btn-ReturnLike" id="DislikeReturn" style="display: inline-block" value="@item.ID" />
+    }
+    <span class="Aantal-Likes">@item.Likes </span>
+</div>
 }
 @section Scripts {
     <script src="~/js/Like.js"></script>
+    <script src="~/js/Subscription.js"></script>
 }

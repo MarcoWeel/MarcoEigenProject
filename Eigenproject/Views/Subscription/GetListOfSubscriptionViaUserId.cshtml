@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Eigenproject.Models.SubscriptionModel>
+
+@{
+    ViewData["Title"] = "GetListOfSubscriptionViaUserId";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>GetListOfSubscriptionViaUserId</h1>
+
+<h3> Subscriptions</h3>
+@if (Model == null)
+{
+    <div>
+        You are not subscribed to any genre
+    </div>
+}
+else
+{
+    @foreach (var item in Model)
+    {
+        <div>
+            <div id="Name">@item.Name</div>
+            <input style="display: none" value="@item.Name" id="GenreInput" />
+            <button class="btn-UnfollowSub" style="display: inline-block;" id="Unfollow">Unfollow Genre</button>
+        </div>
+
+    }
+}
+
+
+
+@section Scripts
+{
+    <script src="~/js/Subscription.js"></script>
+}
+

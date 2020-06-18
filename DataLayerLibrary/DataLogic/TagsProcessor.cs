@@ -18,7 +18,7 @@ namespace DataLayerLibrary.DataLogic
             SQLAccessData.SaveData(sql, data);
         }
 
-        public void CheckTagAndTryToSave(string name)
+        public static void CheckTagAndTryToSave(string name)
         {
             bool exists = false;
             string sql = $"SELECT * FROM tags WHERE name = '{name}'";
@@ -38,10 +38,16 @@ namespace DataLayerLibrary.DataLogic
             }
         }
 
-        public List<TagsDataModel> GetAllTags()
+        public static List<TagsDataModel> GetAllTags()
         {
             string sql = "SELECT * FROM tags;";
             return SQLAccessData.LoadData<TagsDataModel>(sql);
+        }
+
+        public static TagsDataModel GetTagByName(string name)
+        {
+            string sql = $"SELECT * FROM tags WHERE name = '{name}'";
+            return SQLAccessData.LoadFirstEntry<TagsDataModel>(sql);
         }
     }
 }

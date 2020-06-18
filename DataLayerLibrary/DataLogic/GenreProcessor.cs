@@ -15,11 +15,11 @@ namespace DataLayerLibrary.DataLogic
             {
                 name = name
             };
-            string sql = @"INSERT INTO genre (name) VALUES (@name);";
+            string sql = @"INSERT INTO genre(name) VALUES (@name);";
             SQLAccessData.SaveData(sql, data);
         }
 
-        public void CheckGenreAndTryToSave(string name)
+        public static void CheckGenreAndTryToSave(string name)
         {
             bool exists = false;
             string sql = $"SELECT * FROM genre WHERE name = '{name}'";
@@ -39,10 +39,16 @@ namespace DataLayerLibrary.DataLogic
 
         }
 
-        public List<GenreDataModel> GetAllGenres()
+        public static List<GenreDataModel> GetAllGenres()
         {
             string sql = "SELECT * FROM genre;";
             return SQLAccessData.LoadData<GenreDataModel>(sql);
+        }
+
+        public static GenreDataModel GetGenreByName(string name)
+        {
+            string sql = $"SELECT * FROM genre WHERE name = '{name}'";
+            return SQLAccessData.LoadFirstEntry<GenreDataModel>(sql);
         }
     }
 }

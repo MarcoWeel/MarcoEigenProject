@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using DataLayerLibrary.DataAccess;
 using DataLayerLibrary.DataModels;
@@ -49,6 +50,12 @@ namespace DataLayerLibrary.DataLogic
         {
             string sql = $"Select likes FROM post WHERE Post_Id = '{post_Id}';";
             return SQLAccessData.LoadFirstEntry<int>(sql);
+        }
+
+        public static List<PostDataModel> GetPostsByTitle(string title)
+        {
+            string sql = $"SELECT * FROM post WHERE Title LIKE '%{title}%';";
+            return SQLAccessData.LoadData<PostDataModel>(sql);
         }
     }
 }

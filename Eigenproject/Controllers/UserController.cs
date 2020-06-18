@@ -8,6 +8,7 @@ using DataLayerLibrary.DataModels;
 using Eigenproject.Models;
 using Microsoft.AspNetCore.Mvc;
 using LogicLayerLibrary;
+using LogicLayerLibrary.ExtensionMethods;
 using Microsoft.AspNetCore.Authentication;
 
 namespace Eigenproject.Controllers
@@ -65,7 +66,6 @@ namespace Eigenproject.Controllers
                 return RedirectToAction("index", "Home");
             }
             return View();
-
         }
 
         public IActionResult UpdateUser(string username)
@@ -88,6 +88,21 @@ namespace Eigenproject.Controllers
         {
             UserProcessor.UpdateUser(model.Email, model.Password, model.UserName);
             return RedirectToAction("ViewPosts", "Post");
+        }
+
+        public IActionResult DetailsUser(string username)
+        {
+            var datamodel = UserProcessor.GetUserByUserName(username);
+            UserModel data = new UserModel
+            {
+                CreationDate = datamodel.CreationDate,
+                DateOfBirth = datamodel.DateOfBirth,
+                Email = datamodel.Email,
+                Password = datamodel.Password,
+                Points = datamodel.Points,
+                UserName = datamodel.UserName
+            };
+            return View(data);
         }
     }
 }

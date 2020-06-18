@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Mime;
-using System.Reflection;
-using System.Threading.Tasks;
-using DataLayerLibrary.DataLogic;
-using DataLayerLibrary.DataModels;
-using Eigenproject.Models;
+﻿using DataLayerLibrary.DataLogic;
 using Eigenproject.Models.ViewModels;
 using LogicLayerLibrary.ExtensionMethods;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Renci.SshNet;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using Eigenproject.Models;
 
 namespace Eigenproject.Controllers
 {
@@ -29,7 +23,6 @@ namespace Eigenproject.Controllers
         {
             return View();
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -49,7 +42,8 @@ namespace Eigenproject.Controllers
                     int file_id = FileProcessor.GetFileId() + 1;
                     string DBFileName = "../images/" + uniqueFileName;
                     FileProcessor.CreateFile(DBFileName);
-
+                    GenreProcessor.CheckGenreAndTryToSave(post.Genre);
+                    TagsProcessor.CheckTagAndTryToSave(post.Tags);
                     PostProcessor.CreatePost
                     (
                         post.Title,
@@ -65,42 +59,19 @@ namespace Eigenproject.Controllers
             return View();
         }
 
-        public IActionResult ViewPostsold()
-        {
-            var data = PostProcessor.LoadPosts();
-            List<PostModel> posts = new List<PostModel>();
-            foreach (var post in data)
-            {
-                posts.Add(new PostModel
-                {
-                    Title = post.Title,
-                    CreationDate = post.CreationDate,
-                    File_Id = post.File_Id,
-                    Genre = post.Genre,
-                    Id = post.Post_Id,
-                    Likes = post.Likes,
-                    Tags = post.Tags,
-                    User_Id = post.User_Id
-                }
-                );
-
-            }
-            return View(posts);
-        }
-
         public IActionResult ViewPosts()
         {
             var data = PostProcessor.LoadPosts();
             List<PostFileViewModel> posts = new List<PostFileViewModel>();
             foreach (var post in data)
             {
-                string FileLocation = FileProcessor.LoadFilePath(post.File_Id);
+                string fileLocation = FileProcessor.LoadFilePath(post.File_Id);
                 posts.Add(new PostFileViewModel
                 {
                     Title = post.Title,
                     Tags = post.Tags,
                     Genre = post.Genre,
-                    File = FileLocation,
+                    File = fileLocation,
                     ID = post.Post_Id,
                     Likes = post.Likes
                 });
@@ -111,17 +82,64 @@ namespace Eigenproject.Controllers
         [HttpPost]
         public IActionResult AddLike([FromBody] string postId)
         {
-            PostProcessor.AddALikeToPost(Convert.ToInt32(postId));
+            if (LikesProcessor.CheckIfLikedOrDisliked(HttpContext.GetCurrentUserModel().User_Id, Convert.ToInt32(postId)) == null)
+            {
+                PostProcessor.AddALikeToPost(Convert.ToInt32(postId));
+                LikesProcessor.SaveLike(Convert.ToInt32(postId), HttpContext.GetCurrentUserModel().User_Id, true);
+
+            }
             var data = PostProcessor.GetLikesOfPost(Convert.ToInt32(postId));
-            return  Json(data);
+            return Json(data);
         }
 
         [HttpPost]
-        public IActionResult RemoveLike([FromBody] string postId)
+        public IActionResult AddDisLike([FromBody] string postId)
         {
             PostProcessor.RemoveALikeFromPost(Convert.ToInt32(postId));
+            LikesProcessor.SaveLike(Convert.ToInt32(postId), HttpContext.GetCurrentUserModel().User_Id, false);
             var data = PostProcessor.GetLikesOfPost(Convert.ToInt32(postId));
             return Json(data);
+        }
+
+        [HttpPost]
+        public IActionResult RemoveLikeOrDislike([FromBody] string postId)
+        {
+            bool? status = LikesProcessor.CheckIfLikedOrDisliked(HttpContext.GetCurrentUserModel().User_Id, Convert.ToInt32(postId));
+            if (status == true)
+            {
+                PostProcessor.RemoveALikeFromPost(Convert.ToInt32(postId));
+                LikesProcessor.RemoveLike(Convert.ToInt32(postId), HttpContext.GetCurrentUserModel().User_Id);
+                var data = PostProcessor.GetLikesOfPost(Convert.ToInt32(postId));
+                return Json(data);
+            }
+            else
+            {
+                PostProcessor.AddALikeToPost(Convert.ToInt32(postId));
+                LikesProcessor.RemoveLike(Convert.ToInt32(postId), HttpContext.GetCurrentUserModel().User_Id);
+                var data = PostProcessor.GetLikesOfPost(Convert.ToInt32(postId));
+                return Json(data);
+            }
+        }
+
+        public IActionResult GetPostsByTitle(string title)
+        {
+            var data = PostProcessor.GetPostsByTitle(title);
+            List<PostFileViewModel> posts = new List<PostFileViewModel>();
+            foreach (var post in data)
+            {
+                string fileLocation = FileProcessor.LoadFilePath(post.File_Id);
+                posts.Add(new PostFileViewModel
+                {
+                    Title = post.Title,
+                    Tags = post.Tags,
+                    Genre = post.Genre,
+                    File = fileLocation,
+                    ID = post.Post_Id,
+                    Likes = post.Likes
+                });
+            }
+
+            return View("ViewPosts",posts);
         }
     }
 }

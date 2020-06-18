@@ -1,0 +1,8 @@
+﻿@model IEnumerable<Eigenproject.Models.GenreModel>
+
+
+<h1>Popular Genres</h1>
+@foreach (var item in Model)
+{
+    @item.Name
+}
