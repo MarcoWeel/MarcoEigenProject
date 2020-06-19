@@ -20,7 +20,7 @@ namespace DataLayerLibrary.DataLogic
 
         public static void CheckTagAndTryToSave(string name)
         {
-            bool exists = false;
+            bool exists = true;
             string sql = $"SELECT * FROM tags WHERE name = '{name}'";
             try
             {
@@ -29,7 +29,7 @@ namespace DataLayerLibrary.DataLogic
             }
             catch (Exception e)
             {
-                exists = true;
+                exists = false;
             }
 
             if (exists == false)

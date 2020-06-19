@@ -139,7 +139,93 @@ namespace Eigenproject.Controllers
                 });
             }
 
-            return View("ViewPosts",posts);
+            return View("ViewPosts", posts);
+        }
+
+        public IActionResult GetPostsByGenre(string genre)
+        {
+            var data = PostProcessor.GetPostsByGenre(genre);
+            List<PostFileViewModel> posts = new List<PostFileViewModel>();
+            foreach (var post in data)
+            {
+                string fileLocation = FileProcessor.LoadFilePath(post.File_Id);
+                posts.Add(new PostFileViewModel
+                {
+                    Title = post.Title,
+                    Tags = post.Tags,
+                    Genre = post.Genre,
+                    File = fileLocation,
+                    ID = post.Post_Id,
+                    Likes = post.Likes
+                });
+            }
+
+            return View("ViewPosts", posts);
+        }
+
+        public IActionResult GetPostsByTag(string tag)
+        {
+            var data = PostProcessor.GetPostsByTag(tag);
+            List<PostFileViewModel> posts = new List<PostFileViewModel>();
+            foreach (var post in data)
+            {
+                string fileLocation = FileProcessor.LoadFilePath(post.File_Id);
+                posts.Add(new PostFileViewModel
+                {
+                    Title = post.Title,
+                    Tags = post.Tags,
+                    Genre = post.Genre,
+                    File = fileLocation,
+                    ID = post.Post_Id,
+                    Likes = post.Likes
+                });
+            }
+
+            return View("ViewPosts", posts);
+        }
+
+        public IActionResult GetPostsByUserId(int user_Id)
+        {
+            var data = PostProcessor.GetPostsByUserId(user_Id);
+            List<PostFileViewModel> posts = new List<PostFileViewModel>();
+            foreach (var post in data)
+            {
+                string fileLocation = FileProcessor.LoadFilePath(post.File_Id);
+                posts.Add(new PostFileViewModel
+                {
+                    Title = post.Title,
+                    Tags = post.Tags,
+                    Genre = post.Genre,
+                    File = fileLocation,
+                    ID = post.Post_Id,
+                    Likes = post.Likes
+                });
+            }
+
+            return View("ViewPosts", posts);
+        }
+
+        public IActionResult UpdatePost(int post_Id)
+        {
+            var data = PostProcessor.GetPostByPostId(post_Id);
+            var filedata = FileProcessor.LoadFilePath(data.File_Id);
+            var model = new PostFileViewModel
+            {
+                File = filedata,
+                Genre = data.Genre,
+                ID = data.Post_Id,
+                Tags = data.Tags,
+                Title = data.Title
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdatePost(PostFileViewModel model)
+        {
+            PostProcessor.UpdatePost(model.Title,model.Genre,model.Tags,model.ID);
+            return RedirectToAction("GetPostsByTitle", "Post", new {title = model.Title});
         }
     }
 }

@@ -1,16 +1,16 @@
-﻿@model Eigenproject.Models.ViewModels.PostFileUploadViewModel
+﻿@using LogicLayerLibrary.ExtensionMethods
+@model Eigenproject.Models.ViewModels.PostFileViewModel
 
 @{
+    ViewData["Title"] = "UpdatePost";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewData["Title"] = "CreatePost";
 }
 
-<h1>Create a Post</h1>
 
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form enctype="multipart/form-data" asp-action="CreatePost">
+        <form asp-action="UpdatePost">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
@@ -27,32 +27,18 @@
                 <input asp-for="Genre" class="form-control" />
                 <span asp-validation-for="Genre" class="text-danger"></span>
             </div>
+            <img src="@Model.File"/>
             <div class="form-group">
-                <label asp-for="File" class="control-label"></label>
-                <div class="custom-file">
-                    <input asp-for="File" class="form-control custom-file-input" />
-                    <label class="custom-file-label">Kies een bestand</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-controller="Home" asp-action="Index">Back to List</a>
+    <a asp-action="GetPostsByUserId" asp-route-user_Id="@Context.GetCurrentUserModel().User_Id">Back to List</a>
 </div>
 
 @section Scripts {
-    <script>
-        $(document).ready(function () {
-            $('.custom-file-input').on("change",
-                function () {
-                    var fileName = $(this).val().split("\\").pop();
-                    $(this).next('.custom-file-label').html(fileName);
-                });
-        })
-    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

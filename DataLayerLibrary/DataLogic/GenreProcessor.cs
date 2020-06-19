@@ -21,7 +21,7 @@ namespace DataLayerLibrary.DataLogic
 
         public static void CheckGenreAndTryToSave(string name)
         {
-            bool exists = false;
+            bool exists = true;
             string sql = $"SELECT * FROM genre WHERE name = '{name}'";
             try
             {
@@ -29,7 +29,7 @@ namespace DataLayerLibrary.DataLogic
             }
             catch (Exception e)
             {
-                exists = true;
+                exists = false;
             }
 
             if (exists == false)

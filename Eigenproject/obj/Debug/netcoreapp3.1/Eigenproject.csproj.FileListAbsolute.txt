@@ -142,3 +142,4 @@ D:\eigenproject git\MarcoEigenProject\Eigenproject\bin\Debug\netcoreapp3.1\Micro
 D:\eigenproject git\MarcoEigenProject\Eigenproject\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
 D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\GenreSidebar\Default.cshtml.g.cs
 D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\TagSidebar\Default.cshtml.g.cs
+D:\eigenproject git\MarcoEigenProject\Eigenproject\obj\Debug\netcoreapp3.1\Razor\Views\Post\UpdatePost.cshtml.g.cs

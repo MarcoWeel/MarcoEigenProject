@@ -45,7 +45,7 @@ namespace DataLayerLibrary.DataLogic
             SQLAccessData.DeleteData(sql);
         }
 
-        public static void UpdateUser(string email, string password, string username)
+        public static void UpdateUser(string email, string password, string username, int id)
         {
             UserDataModel data = new UserDataModel
             {
@@ -54,7 +54,7 @@ namespace DataLayerLibrary.DataLogic
                 UserName = username
             };
 
-            string sql = $"Update user Set Email = '{email}', Password = '{password}', Username = '{username}';";
+            string sql = $"Update user Set Email = '{email}', Password = '{password}', Username = '{username}' WHERE User_Id = '{id}';";
             SQLAccessData.SaveData(sql, data);
         }
     }

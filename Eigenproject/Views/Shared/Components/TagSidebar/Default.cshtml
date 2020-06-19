@@ -1,8 +1,10 @@
 ﻿@model IEnumerable<Eigenproject.Models.TagModel>
 
 
-<h1>Popular Tags</h1>
-@foreach (var item in Model)
-{
-    @item.Name
-}
+<h4 style="padding-right: 48px; margin-left: 10px; margin-bottom: -8px">Popular Tags</h4>
+<div style="padding-right: 48px; margin-left: 10px">
+    @foreach (var item in Model)
+    {
+        @Html.ActionLink(@item.Name, "GetPostsByTag", "Post", new { tag = item.Name}, new { @style = "padding-left: 0px; padding-right: 8px" })
+    }
+</div>

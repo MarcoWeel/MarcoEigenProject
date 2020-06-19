@@ -60,7 +60,7 @@ namespace Eigenproject
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=User}/{action=LoginUser}/{id?}");
+                    pattern: "{controller=Post}/{action=ViewPosts}/{id?}");
             });
         }
     }

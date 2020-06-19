@@ -5,7 +5,6 @@ $(".btn-Follow").click(function () {
     var returnFollowButton = $(this).parent().find("#Unfollow");
 
     var subscriptionName = $(this).parent().parent().find("#GenreInput").first();
-    var subscriptionType = $(this).parent().parent().find(".TypeInput").first();
 
     $(followButton).css("display", "none");
     $(returnFollowButton).css("display", "inline-block");
@@ -13,6 +12,27 @@ $(".btn-Follow").click(function () {
     $.ajax({
         type: "POST",
         url: "/Subscription/AddGenreSubscription",
+        contentType: 'application/json; charset=utf-8',
+        dataType: "json",
+        data: JSON.stringify(subscriptionName.val().toString()),
+        success: function () { }
+    });
+});
+
+//follows tag on main page
+$(".btn-FollowTag").click(function () {
+    console.log("test");
+    var followButton = $(this).parent().find(".btn-FollowTag").first();
+    var returnFollowButton = $(this).parent().find("#UnfollowTag");
+
+    var subscriptionName = $(this).parent().parent().find("#TagInput").first();
+
+    $(followButton).css("display", "none");
+    $(returnFollowButton).css("display", "inline-block");
+
+    $.ajax({
+        type: "POST",
+        url: "/Subscription/AddTagSubscription",
         contentType: 'application/json; charset=utf-8',
         dataType: "json",
         data: JSON.stringify(subscriptionName.val().toString()),
@@ -48,6 +68,27 @@ $(".btn-Unfollow").click(function () {
     var followButton = $(this).parent().find("#Follow").first();
     var returnFollowButton = $(this).parent().find("#Unfollow").first();
     var subscriptionName = $(this).parent().parent().find("#GenreInput").first();
+
+
+    $(followButton).css("display", "inline-block");
+    $(returnFollowButton).css("display", "none");
+
+    $.ajax({
+        type: "post",
+        url: "/Subscription/RemoveSubscription",
+        contentType: 'application/json',
+        dataType: 'json',
+        data: JSON.stringify(subscriptionName.val().toString()),
+        success: function () { }
+    });
+});
+
+//unfollows tag on main page
+$(".btn-UnfollowTag").click(function () {
+    console.log("test");
+    var followButton = $(this).parent().find("#FollowTag").first();
+    var returnFollowButton = $(this).parent().find("#UnfollowTag").first();
+    var subscriptionName = $(this).parent().parent().find("#TagInput").first();
 
 
     $(followButton).css("display", "inline-block");

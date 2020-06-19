@@ -12,19 +12,29 @@ a.navbar-brand {
 }
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+  color: black;
+}
+
+a:hover {
+    cursor: pointer;
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: black !important;
+    background-color: red !important;
+    border-color: #dd0036 !important;
 }
 
+    .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+        color: black !important;
+        background-color: #dd0036 !important;
+        border-color: #dd0036 !important;
+    }
+
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #dd0036 !important;
+    border-color: #dd0036 !important;
 }
 
 /* Sticky footer styles
@@ -74,7 +84,8 @@ body {
 }
 
 .postBox {
-    width: 900px;
+    width: 991px;
+    float: left;
     height: auto;
     border: 1px black;
     border-radius: 10px;

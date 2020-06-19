@@ -36,7 +36,7 @@ namespace Eigenproject.Controllers
                     salt
                     
                 );
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ViewPosts", "Post");
             }
             return View();
         }
@@ -63,7 +63,7 @@ namespace Eigenproject.Controllers
                 var UserPrincipal = new ClaimsPrincipal(new[] { UserIdentity });
 
                 HttpContext.SignInAsync(UserPrincipal);
-                return RedirectToAction("index", "Home");
+                return RedirectToAction("ViewPosts", "Post");
             }
             return View();
         }
@@ -86,7 +86,7 @@ namespace Eigenproject.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult UpdateUser(UserModel model)
         {
-            UserProcessor.UpdateUser(model.Email, model.Password, model.UserName);
+            UserProcessor.UpdateUser(model.Email, model.Password, model.UserName, HttpContext.GetCurrentUserModel().User_Id);
             return RedirectToAction("ViewPosts", "Post");
         }
 
