@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\marco\\source\\repos\\Eigenproject\\Eigenproject\\Eigenproject.csproj",
+      "projectUniqueName": "D:\\eigenproject git\\MarcoEigenProject\\Eigenproject\\Eigenproject.csproj",
       "projectName": "Eigenproject",
-      "projectPath": "C:\\Users\\marco\\source\\repos\\Eigenproject\\Eigenproject\\Eigenproject.csproj",
+      "projectPath": "D:\\eigenproject git\\MarcoEigenProject\\Eigenproject\\Eigenproject.csproj",
       "packagesPath": "C:\\Users\\marco\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\marco\\source\\repos\\Eigenproject\\Eigenproject\\obj\\",
+      "outputPath": "D:\\eigenproject git\\MarcoEigenProject\\Eigenproject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
