@@ -1,48 +1,147 @@
-﻿<!DOCTYPE html>
+﻿@using LogicLayerLibrary.ExtensionMethods
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Eigenproject</title>
+    <title>@ViewData["Title"] - GamerHaven</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/sidebar.css" />
+    <link rel="stylesheet" href="~/css/sidebarRight.css" />
+    <link rel="stylesheet" href="~/css/SearchBar.css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Eigenproject</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+    <form asp-controller="Post" asp-action="GetPostsByTitle" name="myForm" onsubmit="return validateForm()" method="get" required>
+        <div class="wrap">
+            <div class="search">
+                <input type="text" class="searchTerm" placeholder="Find posts" name="title">
+                <button type="submit" value="save" class="searchButton">
+                        <i class="fa fa-search"></i>
+                    </button>
+            </div>
+        </div>
+    </form>
+    <div class="searchBox">
+    </div>
+
+
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            <div id="viewport">
+
+                <!-- SidebarRight -->
+                <div id="sidebarRight">
+                    @if (Context.GetCurrentUserModel() == null)
+                    {
+                        <header>
+                            @Html.ActionLink("Login", "LoginUser", "User")
+                        </header>
+                    }
+                    else
+                    {
+                        <header>
+                            @Html.ActionLink(@Context.GetCurrentUserModel().UserName, "DetailsUser", "User",  new {username = @Context.GetCurrentUserModel().UserName})
+                        </header>
+                    }
+                <ul class="nav">
+                    @await Component.InvokeAsync("GenreSidebar")
+                    @await Component.InvokeAsync("TagSidebar")
+                </ul>
+                </div>
+
+                <!-- Sidebar -->
+                <div id="sidebar">
+                    <header>
+                        <a asp-controller="Post" asp-action="ViewPosts">GamerHaven <img src="~/DesignImages/Logo.png" style="width: 60px;"/></a> 
+                    </header>
+                    <ul class="nav">
+                        <li>
+                            <a asp-controller="Post" asp-action="ViewPosts">
+                                <i class="zmdi zmdi-view-dashboard"></i>Home
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        @if (Context.GetCurrentUserModel() != null)
+                        {
+                            <li>
+                                <a asp-controller="User" asp-action="DetailsUser" asp-route-username="@Context.GetCurrentUserModel().UserName">
+                                    <i class="zmdi zmdi-link"></i>Account
+                                </a>
+
+                            </li>
+                            <li>
+                                <a asp-controller="Subscription" asp-action="GetListOfSubscriptionViaUserId" asp-route-user_Id="@Context.GetCurrentUserModel().User_Id">
+                                    <i class="zmdi zmdi-calendar"></i>Subscriptions
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="Post" asp-action="CreatePost">
+                                    <i class="zmdi zmdi-widgets"></i>Create Post
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-controller="Post" asp-action="GetPostsByUserId" asp-route-user_Id="@Context.GetCurrentUserModel().User_Id">
+                                    <i class="zmdi zmdi-widgets"></i>My Posts
+                                </a>
+                            </li>
+
+                        }
+                        else
+                        {
+                        <li>
+                            <a  onclick="Onclick()" href="#">
+                                <i class="zmdi zmdi-link"></i>Account
+                            </a>
+
                         </li>
+                        <li>
+                            <a  onclick="Onclick()" href="#">
+                                <i class="zmdi zmdi-calendar"></i>Subscriptions
+                            </a>
+                        </li>
+                        <li>
+                            <a  onclick="Onclick()" href="#">
+                                <i class="zmdi zmdi-widgets"></i>Create Post
+                            </a>
+                        </li>
+                        <li>
+                            <a onclick="Onclick()" href="#">
+                                <i class="zmdi zmdi-widgets"></i>My Posts
+                            </a>
+                        </li>
+                        }
                     </ul>
                 </div>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - Eigenproject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+<script>
+    function validateForm() {
+        var x = document.forms["myForm"]["title"].value;
+        if (x == "") {
+            alert("Name must be filled out");
+            return false;
+        }
+    }
+</script>
+<script>
+    function Onclick() {
+            if (confirm("Can't do this while not logged in. Do you want to log in?")) {
+                window.location.href= "@Url.Action("LoginUser", "User")";;
+            }
+
+        }
+</script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

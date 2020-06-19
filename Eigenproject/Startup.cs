@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using LogicLayerLibrary.LogicLayerLibrary;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -23,6 +26,13 @@ namespace Eigenproject
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication("CookieAuth")
+                .AddCookie("CookieAuth", config =>
+                {
+                    config.Cookie.Name = "UserCookie";
+                    config.LoginPath = "/User/LoginUser";
+                });
+            services.AddScoped<IAuthorizationHandler, CustomRequireClaimHandler>();
             services.AddControllersWithViews();
         }
 
@@ -43,14 +53,14 @@ namespace Eigenproject
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Post}/{action=ViewPosts}/{id?}");
             });
         }
     }

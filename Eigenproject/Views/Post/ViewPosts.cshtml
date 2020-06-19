@@ -1,0 +1,160 @@
+﻿@using System.IO
+@using DataLayerLibrary.DataLogic
+@using LogicLayerLibrary.ExtensionMethods
+@using Microsoft.AspNetCore.Http
+@model IEnumerable<Eigenproject.Models.ViewModels.PostFileViewModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "ViewPosts";
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+}
+
+
+<h1 style="padding-top: 50px"></h1>
+
+
+@if (Context.GetCurrentUserModel() != null)
+{
+    @foreach (var item in Model)
+    {
+        var oldLikeAmount = item.Likes;
+        string path = item.File;
+        var extension = System.IO.Path.GetExtension(path);
+        string type = "Genre";
+        <div class="postBox">
+            <input style="display: none" value="@item.Tags" class="TypeInput" id="TagInput" />
+            <input style="display: none" value="@item.Genre" id="GenreInput" />
+            <h5 class="center" style="color: #fff; padding-bottom: 0; margin-left: 30px; width: inherit">
+                @item.Title
+                @if (SubscriptionProcessor.GetSubscriptionStatus(Context.GetCurrentUserModel().User_Id, item.Genre))
+                {
+                    <button style="display: inline-block; float: right; margin-right: 100px" class="btn-Follow btn btn-primary" id="Follow">Follow Genre</button>
+                    <button class="btn-Unfollow btn btn-primary" style="display: none; float: right; margin-right: 100px" id="Unfollow">Unfollow Genre</button>
+                }
+                else
+                {
+                    <button style="display: none; float: right; margin-right: 100px" class="btn-Follow btn btn-primary" id="Follow">Follow Genre</button>
+                    <button class="btn-Unfollow btn btn-primary" style="display: inline-block; float: right; margin-right: 100px;" id="Unfollow">Unfollow Genre</button>
+                }
+                @if (SubscriptionProcessor.GetSubscriptionStatus(Context.GetCurrentUserModel().User_Id, item.Tags))
+                {
+                    <button style="display: inline-block; float: right; margin-right: 10px;" class="btn-FollowTag btn btn-primary" id="FollowTag">Follow Tag</button>
+                    <button class="btn-UnfollowTag btn btn-primary" style="display: none; float: right; margin-right: 10px;" id="UnfollowTag">Unfollow Tag</button>
+                }
+                else
+                {
+                    <button class="btn-UnfollowTag btn btn-primary" style="display: inline-block; float: right; margin-right: 10px;" id="UnfollowTag">Unfollow Tag</button>
+                    <button style="display: none; float: right; margin-right: 10px;" class="btn-FollowTag btn btn-primary" id="FollowTag">Follow Tag</button>
+                }
+            </h5>
+            <h6 class="center" style="color: #fff; padding-top: 0; margin-left: 30px; width: inherit">Genre: @item.Genre Tag: @item.Tags</h6>
+            @if (extension == ".png" || extension == ".jpg" || extension == ".jpeg")
+            {
+                <img src="@path" class="centerImage" />
+            }
+            else
+            {
+                <video src="@path" class="centerImage"></video>
+            }
+
+
+            @if (LikesProcessor.CheckIfLikedOrDisliked(Context.GetCurrentUserModel().User_Id, item.ID) == null)
+            {
+                <button class="btn-Like btn-primary btn" id="Like" value="@item.ID" style="margin-left: 30px; margin-bottom: 10px; height: 35px">
+                    <i class="fa fa-arrow-circle-up" aria-hidden="true" style="margin: 0 auto; display: block"></i>
+                </button>
+
+                <button class="btn-DisLike btn-primary btn" id="Dislike" value="@item.ID" style="margin-left: 10px; margin-bottom: 10px; height: 35px">
+                    <i class="fa fa-arrow-circle-down" aria-hidden="true" style="        margin: 0 auto;
+        display: block"></i>
+                </button>
+
+                <button class="btn-ReturnLike btn-primary btn" id="LikeReturn" value="@item.ID" style="display: none; margin-left: 30px; margin-bottom: 10px; height: 35px">
+                    <i class="fa fa-arrow-circle-up" aria-hidden="true" style="margin: 0 auto; display: block; color: goldenrod "></i>
+                </button>
+
+                <button class="btn-ReturnLike btn-primary btn" id="DislikeReturn" value="@item.ID" style="display: none; margin-left: 30px; margin-bottom: 10px; height: 35px">
+                    <i class="fa fa-arrow-circle-down" aria-hidden="true" style="margin: 0 auto; display: block; color: dodgerblue"></i>
+                </button>
+            }
+            else if (LikesProcessor.CheckIfLikedOrDisliked(Context.GetCurrentUserModel().User_Id, item.ID) == true)
+            {
+                <button class="btn-Like btn-primary btn" id="Like" value="@item.ID" style="display: none; margin-left: 30px; margin-bottom: 10px;height: 35px
+">
+                    <i class="fa fa-arrow-circle-up" aria-hidden="true" style="margin: 0 auto;display: block"></i>
+                </button>
+
+                <button class="btn-DisLike btn-primary btn" id="Dislike" value="@item.ID" style="display: none; margin-left: 10px; margin-bottom: 10px; height: 35px">
+                    <i class="fa fa-arrow-circle-down" aria-hidden="true" style="margin: 0 auto; display: block"></i>
+                </button>
+
+                <button class="btn-ReturnLike btn-primary btn" id="LikeReturn" value="@item.ID" style="display: inline-block; margin-left: 30px; margin-bottom: 10px; height: 35px">
+                    <i class="fa fa-arrow-circle-up" aria-hidden="true" style="margin: 0 auto; display: block; color: goldenrod "></i>
+                </button>
+
+                <button class="btn-ReturnLike btn-primary btn" id="DislikeReturn" value="@item.ID" style="display: none; margin-left: 30px; margin-bottom: 10px; height: 35px">
+                    <i class="fa fa-arrow-circle-down" aria-hidden="true" style="margin: 0 auto; display: block; color: dodgerblue"></i>
+                </button>
+            }
+            else
+            {
+                <button class="btn-Like btn-primary btn" id="Like" value="@item.ID" style="display: none; margin-left: 30px; margin-bottom: 10px; height: 35px">
+                    <i class="fa fa-arrow-circle-up" aria-hidden="true" style="margin: 0 auto; display: block"></i>
+                </button>
+
+                <button class="btn-DisLike btn-primary btn" id="Dislike" value="@item.ID" style="display: none; margin-left: 10px; margin-bottom: 10px; height: 35px">
+                    <i class="fa fa-arrow-circle-down" aria-hidden="true" style="margin: 0 auto; display: block"></i>
+                </button>
+
+                <button class="btn-ReturnLike btn-primary btn" id="LikeReturn" value="@item.ID" style="display: none; margin-left: 30px; margin-bottom: 10px; height: 35px">
+                    <i class="fa fa-arrow-circle-up" aria-hidden="true" style="margin: 0 auto; display: block; color: goldenrod "></i>
+                </button>
+
+                <button class="btn-ReturnLike btn-primary btn" id="DislikeReturn" value="@item.ID" style="display: inline-block; margin-left: 30px; margin-bottom: 10px; height: 35px">
+                    <i class="fa fa-arrow-circle-down" aria-hidden="true" style="margin: 0 auto; display: block; color: dodgerblue"></i>
+                </button>
+            }
+            <span class="Aantal-Likes">@item.Likes </span>
+        </div>
+    }
+}
+else
+{
+    @foreach (var item in Model)
+    {
+        var oldLikeAmount = item.Likes;
+        string path = item.File;
+        var extension = System.IO.Path.GetExtension(path);
+        string type = "Genre";
+        <div class="postBox">
+            <h5 class="center" style="color: #fff; padding-bottom: 0; margin-left: 30px; width: inherit">@item.Title </h5>
+            <h6 class="center" style="color: #fff; padding-top: 0; margin-left: 30px; width: inherit">Genre: @item.Genre Tag: @item.Tags</h6>
+            @if (extension == ".png" || extension == ".jpg" || extension == ".jpeg")
+            {
+                <img src="@path" class="centerImage" />
+            }
+            else
+            {
+                <video src="@path" class="centerImage"></video>
+            }
+            <button id="NotLogged" class="btnNotlogged btn-primary btn" style="margin-left: 30px; margin-bottom: 10px; height: 35px">
+                <i class="fa fa-arrow-circle-up" aria-hidden="true" style="margin: 0 auto; display: block"></i>
+            </button>
+            <button id="NotLogged" class="btnNotlogged btn-primary btn" style="margin-left: 10px; margin-bottom: 10px; height: 35px">
+                <i class="fa fa-arrow-circle-down" aria-hidden="true" style="margin: 0 auto; display: block"></i>
+            </button>
+            <span class="Aantal-Likes">@item.Likes </span>
+        </div>
+    }
+}
+
+@section Scripts {
+    <script>
+        $(".btnNotlogged").click(function () {
+            alert("Can't do this while not logged in");
+        })
+    </script>
+    <script src="~/js/Like.js"></script>
+    <script src="~/js/Subscription.js"></script>
+}
