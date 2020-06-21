@@ -8,41 +8,43 @@
 <h1>Create a Post</h1>
 
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form enctype="multipart/form-data" asp-action="CreatePost">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Tags" class="control-label"></label>
-                <input asp-for="Tags" class="form-control" />
-                <span asp-validation-for="Tags" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Genre" class="control-label"></label>
-                <input asp-for="Genre" class="form-control" />
-                <span asp-validation-for="Genre" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="File" class="control-label"></label>
-                <div class="custom-file">
-                    <input asp-for="File" class="form-control custom-file-input" />
-                    <label class="custom-file-label">Kies een bestand</label>
+<div class="postBox" style="text-align: center">
+    <div style="display: inline-block" class="row">
+        <div class="col-md-4" style="display: inline-block">
+            <form style="width: 200%;display: inline-block;margin-left: -50px;" class="center" enctype="multipart/form-data" asp-action="CreatePost">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label style="color: #fff" asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
                 </div>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+                <div class="form-group">
+                    <label style="color: #fff" asp-for="Tags" class="control-label"></label>
+                    <input asp-for="Tags" class="form-control" />
+                    <span asp-validation-for="Tags" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label style="color: #fff" asp-for="Genre" class="control-label"></label>
+                    <input asp-for="Genre" class="form-control" />
+                    <span asp-validation-for="Genre" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label style="color: #fff" asp-for="File" class="control-label"></label>
+                    <div class="custom-file">
+                        <input asp-for="File" class="form-control custom-file-input" />
+                        <label style="text-align: left" class="custom-file-label">Kies een bestand</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create post" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-controller="Home" asp-action="Index">Back to List</a>
+    <div>
+        <a style="color: #fff" asp-controller="Post" asp-action="ViewPosts">Back to Main Page</a>
+    </div>
 </div>
 
 @section Scripts {

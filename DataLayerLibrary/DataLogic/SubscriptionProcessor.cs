@@ -68,14 +68,13 @@ namespace DataLayerLibrary.DataLogic
         public static List<SubscriptionDataModel> GetFiveMostRecurringGenres()
         {
             string sql =
-                $"SELECT * , COUNT(SubscriptionName) AS `value_occurrence` FROM subscriptions GROUP BY SubscriptionName HAVING type= 'Genre' ORDER BY `value_occurrence` DESC LIMIT 5";
+                $"SELECT *, COUNT(Type) as 'occurence' FROM subscriptions WHERE Type = 'Genre' GROUP BY SubscriptionName ORDER BY occurence DESC LIMIT 5";
             return SQLAccessData.LoadData<SubscriptionDataModel>(sql);
         }
 
         public static List<SubscriptionDataModel> GetFiveMostRecurringTags()
         {
-            string sql =
-                $"SELECT * , COUNT(SubscriptionName) AS `value_occurrence` FROM subscriptions GROUP BY SubscriptionName HAVING type= 'Tag' ORDER BY `value_occurrence` DESC LIMIT 5";
+            string sql = $"SELECT *, COUNT(Type) as 'occurence' FROM subscriptions WHERE Type = 'Tag' GROUP BY SubscriptionName ORDER BY occurence DESC LIMIT 5";
             return SQLAccessData.LoadData<SubscriptionDataModel>(sql);
         }
     }

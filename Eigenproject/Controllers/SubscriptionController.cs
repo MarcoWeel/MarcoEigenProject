@@ -22,7 +22,8 @@ namespace Eigenproject.Controllers
                 {
                     Name = subscription.SubscriptionName,
                     Id = subscription.Id,
-                    User_Id = subscription.User_Id
+                    User_Id = subscription.User_Id,
+                    type = subscription.Type
                 });
             }
 

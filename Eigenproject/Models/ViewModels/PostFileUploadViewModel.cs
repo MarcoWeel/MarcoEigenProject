@@ -9,8 +9,8 @@ namespace Eigenproject.Models.ViewModels
 {
     public class PostFileUploadViewModel
     {
-        [Required(ErrorMessage = "Vul een titel in")]
-        [Display(Name = "Titel")]
+        [Required(ErrorMessage = "Add a title")]
+        [Display(Name = "Title")]
         public string Title { get; set; }
 
         public int File_Id { get; set; }
@@ -22,8 +22,8 @@ namespace Eigenproject.Models.ViewModels
         public string Genre { get; set; }
 
         [DataType(DataType.Upload)]
-        [Display(Name = "Upload bestand")]
-        [Required(ErrorMessage = "Voeg een bestand toe")]
+        [Display(Name = "Upload file")]
+        [Required(ErrorMessage = "Add a file")]
         public IFormFile File { get; set; }
     }
 }

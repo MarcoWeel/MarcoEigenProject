@@ -24,22 +24,38 @@ namespace Eigenproject.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult RegisterUser(UserModel user)
         {
-            if (ModelState.IsValid)
+            var tempdata = UserProcessor.GetUserByUserName(user.UserName);
+            if (tempdata.Email == user.Email)
             {
-                string salt = HashingLogic.GenerateSalt();
-                string password = HashingLogic.GenerateHash(salt, user.Password);
-                UserProcessor.CreateUser(
-                    user.Email,
-                    user.DateOfBirth,
-                    password,
-                    user.UserName,
-                    salt
-                    
-                );
-                return RedirectToAction("ViewPosts", "Post");
+                ModelState.AddModelError("", "Email already in use");
+                return View();
             }
-            return View();
+            else if (tempdata.UserName == user.UserName)
+
+            {
+                ModelState.AddModelError("", "Username already in use");
+                return View();
+            }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    string salt = HashingLogic.GenerateSalt();
+                    string password = HashingLogic.GenerateHash(salt, user.Password);
+                    UserProcessor.CreateUser(
+                        user.Email,
+                        user.DateOfBirth,
+                        password,
+                        user.UserName,
+                        salt
+
+                    );
+                    return RedirectToAction("ViewPosts", "Post");
+                }
+                return View();
+            }
         }
+           
 
         public IActionResult LoginUser()
         {
@@ -64,6 +80,10 @@ namespace Eigenproject.Controllers
 
                 HttpContext.SignInAsync(UserPrincipal);
                 return RedirectToAction("ViewPosts", "Post");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Password or username incorrect");
             }
             return View();
         }

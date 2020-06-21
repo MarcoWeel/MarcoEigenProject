@@ -5,30 +5,37 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>GetListOfSubscriptionViaUserId</h1>
 
-<h3> Subscriptions</h3>
-@if (Model == null)
-{
-    <div>
-        You are not subscribed to any genre
-    </div>
-}
-else
-{
-    @foreach (var item in Model)
+<div class="postBox" style="margin-top: 80px; text-align: center">
+    <h3 style="color:  #fff"> Subscriptions</h3>
+    @if (Model == null)
     {
-        <div>
-            <div id="Name">@item.Name</div>
-            <input style="display: none" value="@item.Name" id="GenreInput" />
-            <button class="btn-UnfollowSub" style="display: inline-block;" id="Unfollow">Unfollow Genre</button>
+        <div style="color: #fff">
+            You are not subscribed to any genre
         </div>
-
     }
-}
+    else
+    {
+        @foreach (var item in Model)
+        {
+            <div>
+                <div style="color: #fff" id="Name">@item.Name</div>
+                <input style="display: none" value="@item.Name" id="GenreInput" />
+                @if (item.type == "Genre")
+                {
+                    <button class="btn-UnfollowSub btn btn-primary center" style="display: inline-block; width: auto" id="Unfollow">Unfollow Genre</button>
+                }
+                else
+                {
+                    <button class="btn-UnfollowSub btn btn-primary center" style="display: inline-block; width: auto" id="Unfollow">Unfollow Tag</button>
+                }
+            </div>
+
+        }
+    }
 
 
-
+</div>
 @section Scripts
 {
     <script src="~/js/Subscription.js"></script>

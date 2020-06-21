@@ -9,22 +9,22 @@ namespace Eigenproject.Models
     public class UserModel
     {
         public int User_Id { get; set; }
-        [Required(ErrorMessage = "Vul een E-mail in")]
+        [Required(ErrorMessage = "Fill in an Email")]
         [Display(Name = "E-mail")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Vul een geboortedatum in")]
-        [Display(Name = "geboortedatum")]
+        [Required(ErrorMessage = "Fill in a date of birth")]
+        [Display(Name = "Date of birth")]
         [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
 
-        [Required(ErrorMessage = "Vul een gebruikersnaam in")]
-        [Display(Name = "Gebruikersnaam")]
+        [Required(ErrorMessage = "Fill in a username")]
+        [Display(Name = "Username")]
         public string UserName { get; set; }
 
-        [Required(ErrorMessage = "Vul een wachtwoord in")]
-        [Display(Name = "Wachtwoord")]
+        [Required(ErrorMessage = "Fill in a password")]
+        [Display(Name = "Password")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 

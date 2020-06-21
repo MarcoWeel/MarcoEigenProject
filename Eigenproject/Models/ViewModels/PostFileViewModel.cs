@@ -10,9 +10,11 @@ namespace Eigenproject.Models.ViewModels
 {
     public class PostFileViewModel
     {
-        [Required(ErrorMessage = "Vul een titel in")]
-        [Display(Name = "Titel")]
+        [Required(ErrorMessage = "Fill in a title")]
+        [Display(Name = "Title")]
         public string Title { get; set; }
+
+        public int User_Id { get; set; }
 
         public int File_Id { get; set; }
 
@@ -23,7 +25,7 @@ namespace Eigenproject.Models.ViewModels
         public string Genre { get; set; }
 
         [Display(Name = "File")]
-        [Required(ErrorMessage = "Voeg een bestand toe")]
+        [Required(ErrorMessage = "Add a file")]
         public string File { get; set; }
         public int ID { get; set; }
         public int Likes { get; set; }

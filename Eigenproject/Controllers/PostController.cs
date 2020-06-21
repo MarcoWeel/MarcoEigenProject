@@ -73,7 +73,8 @@ namespace Eigenproject.Controllers
                     Genre = post.Genre,
                     File = fileLocation,
                     ID = post.Post_Id,
-                    Likes = post.Likes
+                    Likes = post.Likes,
+                    User_Id = post.User_Id
                 });
             }
             return View(posts);

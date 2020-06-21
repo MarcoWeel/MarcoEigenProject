@@ -5,45 +5,45 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>DetailsUser</h1>
 
-<div>
-    <h4>UserModel</h4>
+
+<div class="postBox" style="margin-top: 80px; padding-left: 20px">
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class = "col-sm-2" style="color: #fff">
             @Html.DisplayNameFor(model => model.UserName)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-10" style="color: #fff">
             @Html.DisplayFor(model => model.UserName)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-2" style="color: #fff">
             @Html.DisplayNameFor(model => model.Email)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-10" style="color: #fff">
             @Html.DisplayFor(model => model.Email)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-2" style="color: #fff">
             @Html.DisplayNameFor(model => model.DateOfBirth)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-10" style="color: #fff">
             @Html.DisplayFor(model => model.DateOfBirth)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-2" style="color: #fff">
             @Html.DisplayNameFor(model => model.CreationDate)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-10" style="color: #fff">
             @Html.DisplayFor(model => model.CreationDate)
         </dd>
-        <dt class="col-sm-2">
+        <dt class="col-sm-2" style="color: #fff">
             @Html.DisplayNameFor(model => model.Points)
         </dt>
-        <dd class="col-sm-10">
+        <dd class="col-sm-10" style="color: #fff">
             @Html.DisplayFor(model => model.Points)
         </dd>
     </dl>
+    <div>
+        @Html.ActionLink("Edit", "UpdateUser", new { username = Model.UserName}, new {@style="color : #fff;"}) |
+        <a style="color: #fff" asp-controller="Post" asp-action="ViewPosts">Back to main page</a>
+    </div>
 </div>
-<div>
-    @Html.ActionLink("Edit", "UpdateUser", new { username = Model.UserName}) |
-    <a asp-controller="Post" asp-action="ViewPosts">Back to main page</a>
-</div>
+

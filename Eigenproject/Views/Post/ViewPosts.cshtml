@@ -22,101 +22,113 @@
         string path = item.File;
         var extension = System.IO.Path.GetExtension(path);
         string type = "Genre";
-        <div class="postBox">
-            <input style="display: none" value="@item.Tags" class="TypeInput" id="TagInput" />
-            <input style="display: none" value="@item.Genre" id="GenreInput" />
-            <h5 class="center" style="color: #fff; padding-bottom: 0; margin-left: 30px; width: inherit">
-                @item.Title
-                @if (SubscriptionProcessor.GetSubscriptionStatus(Context.GetCurrentUserModel().User_Id, item.Genre))
-                {
-                    <button style="display: inline-block; float: right; margin-right: 100px" class="btn-Follow btn btn-primary" id="Follow">Follow Genre</button>
-                    <button class="btn-Unfollow btn btn-primary" style="display: none; float: right; margin-right: 100px" id="Unfollow">Unfollow Genre</button>
-                }
-                else
-                {
-                    <button style="display: none; float: right; margin-right: 100px" class="btn-Follow btn btn-primary" id="Follow">Follow Genre</button>
-                    <button class="btn-Unfollow btn btn-primary" style="display: inline-block; float: right; margin-right: 100px;" id="Unfollow">Unfollow Genre</button>
-                }
-                @if (SubscriptionProcessor.GetSubscriptionStatus(Context.GetCurrentUserModel().User_Id, item.Tags))
-                {
-                    <button style="display: inline-block; float: right; margin-right: 10px;" class="btn-FollowTag btn btn-primary" id="FollowTag">Follow Tag</button>
-                    <button class="btn-UnfollowTag btn btn-primary" style="display: none; float: right; margin-right: 10px;" id="UnfollowTag">Unfollow Tag</button>
-                }
-                else
-                {
-                    <button class="btn-UnfollowTag btn btn-primary" style="display: inline-block; float: right; margin-right: 10px;" id="UnfollowTag">Unfollow Tag</button>
-                    <button style="display: none; float: right; margin-right: 10px;" class="btn-FollowTag btn btn-primary" id="FollowTag">Follow Tag</button>
-                }
-            </h5>
-            <h6 class="center" style="color: #fff; padding-top: 0; margin-left: 30px; width: inherit">Genre: @item.Genre Tag: @item.Tags</h6>
-            @if (extension == ".png" || extension == ".jpg" || extension == ".jpeg")
-            {
-                <img src="@path" class="centerImage" />
-            }
-            else
-            {
-                <video src="@path" class="centerImage"></video>
-            }
+<div class="postBox">
+    <input style="display: none" value="@item.Tags" class="TypeInput" id="TagInput" />
+    <input style="display: none" value="@item.Genre" id="GenreInput" />
+    <h5 class="center" style="color: #fff; padding-bottom: 0; margin-left: 30px; width: inherit">
+        @if (Context.GetCurrentUserModel().User_Id == item.User_Id)
+        {
+            @Html.ActionLink(@item.Title, "UpdatePost", "Post", new {post_Id = item.ID})
+        }
+        else
+        {
+            @item.Title
+        }
+        @if (SubscriptionProcessor.GetSubscriptionStatus(Context.GetCurrentUserModel().User_Id, item.Genre))
+        {
+            <button style="display: inline-block; float: right; margin-right: 100px" class="btn-Follow btn btn-primary" id="Follow">Follow Genre</button>
+            <button class="btn-Unfollow btn btn-primary" style="display: none; float: right; margin-right: 100px" id="Unfollow">Unfollow Genre</button>
+        }
+        else
+        {
+            <button style="display: none; float: right; margin-right: 100px" class="btn-Follow btn btn-primary" id="Follow">Follow Genre</button>
+            <button class="btn-Unfollow btn btn-primary" style="display: inline-block; float: right; margin-right: 100px;" id="Unfollow">Unfollow Genre</button>
+        }
+        @if (SubscriptionProcessor.GetSubscriptionStatus(Context.GetCurrentUserModel().User_Id, item.Tags))
+        {
+            <button style="display: inline-block; float: right; margin-right: 10px;" class="btn-FollowTag btn btn-primary" id="FollowTag">Follow Tag</button>
+            <button class="btn-UnfollowTag btn btn-primary" style="display: none; float: right; margin-right: 10px;" id="UnfollowTag">Unfollow Tag</button>
+        }
+        else
+        {
+            <button class="btn-UnfollowTag btn btn-primary" style="display: inline-block; float: right; margin-right: 10px;" id="UnfollowTag">Unfollow Tag</button>
+            <button style="display: none; float: right; margin-right: 10px;" class="btn-FollowTag btn btn-primary" id="FollowTag">Follow Tag</button>
+        }
+    </h5>
+    <h6 class="center" style="color: #fff; padding-top: 0; margin-left: 30px; margin-bottom: -10px; width: inherit">Genre: @Html.ActionLink(@item.Genre, "GetPostsByGenre", "Post", new { genre = item.Genre })</h6>
+    <h6 class="center" style="color: #fff; padding-top: 0; margin-left: 30px; margin-bottom: 10px; width: inherit">Tag: @Html.ActionLink(@item.Tags, "GetPostsByTag", "Post", new { tag = item.Tags })</h6>
+
+    @if (extension == ".png" || extension == ".jpg" || extension == ".jpeg")
+    {
+        <img src="@path" class="centerImage" />
+    }
+    else
+    {
+        <video src="@path" class="centerImage"></video>
+    }
 
 
-            @if (LikesProcessor.CheckIfLikedOrDisliked(Context.GetCurrentUserModel().User_Id, item.ID) == null)
-            {
-                <button class="btn-Like btn-primary btn" id="Like" value="@item.ID" style="margin-left: 30px; margin-bottom: 10px; height: 35px">
-                    <i class="fa fa-arrow-circle-up" aria-hidden="true" style="margin: 0 auto; display: block"></i>
-                </button>
+    @if (LikesProcessor.CheckIfLikedOrDisliked(Context.GetCurrentUserModel().User_Id, item.ID) == null)
+    {
+        <button class="btn-Like btn-primary btn" id="Like" value="@item.ID" style="margin-left: 30px; margin-bottom: 10px; height: 35px">
+            <i class="fa fa-arrow-circle-up" aria-hidden="true" style="margin: 0 auto; display: block"></i>
+        </button>
 
-                <button class="btn-DisLike btn-primary btn" id="Dislike" value="@item.ID" style="margin-left: 10px; margin-bottom: 10px; height: 35px">
-                    <i class="fa fa-arrow-circle-down" aria-hidden="true" style="        margin: 0 auto;
+        <button class="btn-DisLike btn-primary btn" id="Dislike" value="@item.ID" style="margin-left: 10px; margin-bottom: 10px; height: 35px">
+            <i class="fa fa-arrow-circle-down" aria-hidden="true" style="        margin: 0 auto;
         display: block"></i>
-                </button>
+        </button>
 
-                <button class="btn-ReturnLike btn-primary btn" id="LikeReturn" value="@item.ID" style="display: none; margin-left: 30px; margin-bottom: 10px; height: 35px">
-                    <i class="fa fa-arrow-circle-up" aria-hidden="true" style="margin: 0 auto; display: block; color: goldenrod "></i>
-                </button>
+        <button class="btn-ReturnLike btn-primary btn" id="LikeReturn" value="@item.ID" style="display: none; margin-left: 30px; margin-bottom: 10px; height: 35px">
+            <i class="fa fa-arrow-circle-up" aria-hidden="true" style="margin: 0 auto; display: block; color: goldenrod "></i>
+        </button>
 
-                <button class="btn-ReturnLike btn-primary btn" id="DislikeReturn" value="@item.ID" style="display: none; margin-left: 30px; margin-bottom: 10px; height: 35px">
-                    <i class="fa fa-arrow-circle-down" aria-hidden="true" style="margin: 0 auto; display: block; color: dodgerblue"></i>
-                </button>
-            }
-            else if (LikesProcessor.CheckIfLikedOrDisliked(Context.GetCurrentUserModel().User_Id, item.ID) == true)
-            {
-                <button class="btn-Like btn-primary btn" id="Like" value="@item.ID" style="display: none; margin-left: 30px; margin-bottom: 10px;height: 35px
+        <button class="btn-ReturnLike btn-primary btn" id="DislikeReturn" value="@item.ID" style="display: none; margin-left: 30px; margin-bottom: 10px; height: 35px">
+            <i class="fa fa-arrow-circle-down" aria-hidden="true" style="margin: 0 auto; display: block; color: dodgerblue"></i>
+        </button>
+    }
+    else if (LikesProcessor.CheckIfLikedOrDisliked(Context.GetCurrentUserModel().User_Id, item.ID) == true)
+    {
+        <button class="btn-Like btn-primary btn" id="Like" value="@item.ID" style="        display: none;
+        margin-left: 30px;
+        margin-bottom: 10px;
+        height: 35px
 ">
-                    <i class="fa fa-arrow-circle-up" aria-hidden="true" style="margin: 0 auto;display: block"></i>
-                </button>
+            <i class="fa fa-arrow-circle-up" aria-hidden="true" style="margin: 0 auto;display: block"></i>
+        </button>
 
-                <button class="btn-DisLike btn-primary btn" id="Dislike" value="@item.ID" style="display: none; margin-left: 10px; margin-bottom: 10px; height: 35px">
-                    <i class="fa fa-arrow-circle-down" aria-hidden="true" style="margin: 0 auto; display: block"></i>
-                </button>
+        <button class="btn-DisLike btn-primary btn" id="Dislike" value="@item.ID" style="display: none; margin-left: 10px; margin-bottom: 10px; height: 35px">
+            <i class="fa fa-arrow-circle-down" aria-hidden="true" style="margin: 0 auto; display: block"></i>
+        </button>
 
-                <button class="btn-ReturnLike btn-primary btn" id="LikeReturn" value="@item.ID" style="display: inline-block; margin-left: 30px; margin-bottom: 10px; height: 35px">
-                    <i class="fa fa-arrow-circle-up" aria-hidden="true" style="margin: 0 auto; display: block; color: goldenrod "></i>
-                </button>
+        <button class="btn-ReturnLike btn-primary btn" id="LikeReturn" value="@item.ID" style="display: inline-block; margin-left: 30px; margin-bottom: 10px; height: 35px">
+            <i class="fa fa-arrow-circle-up" aria-hidden="true" style="margin: 0 auto; display: block; color: goldenrod "></i>
+        </button>
 
-                <button class="btn-ReturnLike btn-primary btn" id="DislikeReturn" value="@item.ID" style="display: none; margin-left: 30px; margin-bottom: 10px; height: 35px">
-                    <i class="fa fa-arrow-circle-down" aria-hidden="true" style="margin: 0 auto; display: block; color: dodgerblue"></i>
-                </button>
-            }
-            else
-            {
-                <button class="btn-Like btn-primary btn" id="Like" value="@item.ID" style="display: none; margin-left: 30px; margin-bottom: 10px; height: 35px">
-                    <i class="fa fa-arrow-circle-up" aria-hidden="true" style="margin: 0 auto; display: block"></i>
-                </button>
+        <button class="btn-ReturnLike btn-primary btn" id="DislikeReturn" value="@item.ID" style="display: none; margin-left: 30px; margin-bottom: 10px; height: 35px">
+            <i class="fa fa-arrow-circle-down" aria-hidden="true" style="margin: 0 auto; display: block; color: dodgerblue"></i>
+        </button>
+    }
+    else
+    {
+        <button class="btn-Like btn-primary btn" id="Like" value="@item.ID" style="display: none; margin-left: 30px; margin-bottom: 10px; height: 35px">
+            <i class="fa fa-arrow-circle-up" aria-hidden="true" style="margin: 0 auto; display: block"></i>
+        </button>
 
-                <button class="btn-DisLike btn-primary btn" id="Dislike" value="@item.ID" style="display: none; margin-left: 10px; margin-bottom: 10px; height: 35px">
-                    <i class="fa fa-arrow-circle-down" aria-hidden="true" style="margin: 0 auto; display: block"></i>
-                </button>
+        <button class="btn-DisLike btn-primary btn" id="Dislike" value="@item.ID" style="display: none; margin-left: 10px; margin-bottom: 10px; height: 35px">
+            <i class="fa fa-arrow-circle-down" aria-hidden="true" style="margin: 0 auto; display: block"></i>
+        </button>
 
-                <button class="btn-ReturnLike btn-primary btn" id="LikeReturn" value="@item.ID" style="display: none; margin-left: 30px; margin-bottom: 10px; height: 35px">
-                    <i class="fa fa-arrow-circle-up" aria-hidden="true" style="margin: 0 auto; display: block; color: goldenrod "></i>
-                </button>
+        <button class="btn-ReturnLike btn-primary btn" id="LikeReturn" value="@item.ID" style="display: none; margin-left: 30px; margin-bottom: 10px; height: 35px">
+            <i class="fa fa-arrow-circle-up" aria-hidden="true" style="margin: 0 auto; display: block; color: goldenrod "></i>
+        </button>
 
-                <button class="btn-ReturnLike btn-primary btn" id="DislikeReturn" value="@item.ID" style="display: inline-block; margin-left: 30px; margin-bottom: 10px; height: 35px">
-                    <i class="fa fa-arrow-circle-down" aria-hidden="true" style="margin: 0 auto; display: block; color: dodgerblue"></i>
-                </button>
-            }
-            <span class="Aantal-Likes">@item.Likes </span>
-        </div>
+        <button class="btn-ReturnLike btn-primary btn" id="DislikeReturn" value="@item.ID" style="display: inline-block; margin-left: 30px; margin-bottom: 10px; height: 35px">
+            <i class="fa fa-arrow-circle-down" aria-hidden="true" style="margin: 0 auto; display: block; color: dodgerblue"></i>
+        </button>
+    }
+    <span class="Aantal-Likes" style="color: #fff">Likes: @item.Likes </span>
+</div>
     }
 }
 else
@@ -129,7 +141,8 @@ else
         string type = "Genre";
         <div class="postBox">
             <h5 class="center" style="color: #fff; padding-bottom: 0; margin-left: 30px; width: inherit">@item.Title </h5>
-            <h6 class="center" style="color: #fff; padding-top: 0; margin-left: 30px; width: inherit">Genre: @item.Genre Tag: @item.Tags</h6>
+            <h6 class="center" style="color: #fff; padding-top: 0; margin-left: 30px; margin-bottom: -10px; width: inherit">Genre: @Html.ActionLink(@item.Genre, "GetPostsByGenre", "Post", new { genre = item.Genre })</h6>
+            <h6 class="center" style="color: #fff; padding-top: 0; margin-left: 30px; margin-bottom: 10px; width: inherit">Tag: @Html.ActionLink(@item.Tags, "GetPostsByTag", "Post", new { tag = item.Tags })</h6>
             @if (extension == ".png" || extension == ".jpg" || extension == ".jpeg")
             {
                 <img src="@path" class="centerImage" />
@@ -144,7 +157,7 @@ else
             <button id="NotLogged" class="btnNotlogged btn-primary btn" style="margin-left: 10px; margin-bottom: 10px; height: 35px">
                 <i class="fa fa-arrow-circle-down" aria-hidden="true" style="margin: 0 auto; display: block"></i>
             </button>
-            <span class="Aantal-Likes">@item.Likes </span>
+            <span class="Aantal-Likes" style="color: #fff">Likes: @item.Likes </span>
         </div>
     }
 }
