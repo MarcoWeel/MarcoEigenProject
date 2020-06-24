@@ -28,7 +28,8 @@
     <h5 class="center" style="color: #fff; padding-bottom: 0; margin-left: 30px; width: inherit">
         @if (Context.GetCurrentUserModel().User_Id == item.User_Id)
         {
-            @Html.ActionLink(@item.Title, "UpdatePost", "Post", new {post_Id = item.ID})
+            @item.Title
+            <button style="margin-left: 10px" class="btn btn-primary" asp-controller="Post" asp-action="UpdatePost" asp-route-post_Id="@item.ID" >Edit post</button>
         }
         else
         {

@@ -19,15 +19,15 @@
         @foreach (var item in Model)
         {
             <div>
-                <div style="color: #fff" id="Name">@item.Name</div>
                 <input style="display: none" value="@item.Name" id="GenreInput" />
+                <div style="color: #fff; display: inline-block" id="Name">@item.Name</div>
                 @if (item.type == "Genre")
                 {
-                    <button class="btn-UnfollowSub btn btn-primary center" style="display: inline-block; width: auto" id="Unfollow">Unfollow Genre</button>
+                    <button class="btn-UnfollowSub btn btn-primary center" style="display: inline-block; width: auto; padding-bottom: 5px" id="Unfollow">Unfollow Genre</button>
                 }
                 else
                 {
-                    <button class="btn-UnfollowSub btn btn-primary center" style="display: inline-block; width: auto" id="Unfollow">Unfollow Tag</button>
+                    <button class="btn-UnfollowSub btn btn-primary center" style="display: inline-block; width: auto; padding-bottom: 5px" id="Unfollow">Unfollow Tag</button>
                 }
             </div>
 

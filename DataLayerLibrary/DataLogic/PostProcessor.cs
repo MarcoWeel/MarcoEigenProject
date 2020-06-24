@@ -92,5 +92,11 @@ namespace DataLayerLibrary.DataLogic
             };
             string sql = $"Update user Set Title = '{title}', Genre = '{genre}', Tags = '{tag}'; WHERE Post_Id = '{id}';";
         }
+
+        public static void DeletePost(int id)
+        {
+            string sql = $"Delete from post WHERE post_id = '{id}';";
+            SQLAccessData.DeleteData(sql);
+        }
     }
 }

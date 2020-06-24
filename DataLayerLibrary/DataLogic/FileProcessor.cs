@@ -40,5 +40,11 @@ namespace DataLayerLibrary.DataLogic
             return data;
 
         }
+
+        public static void DeleteFile(int id)
+        {
+            string sql = $"Delete FROM file WHERE file_id = '{id}';";
+            SQLAccessData.DeleteData(sql);
+        }
     }
 }

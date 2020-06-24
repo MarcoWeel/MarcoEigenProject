@@ -157,7 +157,8 @@ namespace Eigenproject.Controllers
                     Genre = post.Genre,
                     File = fileLocation,
                     ID = post.Post_Id,
-                    Likes = post.Likes
+                    Likes = post.Likes,
+                    User_Id = post.User_Id
                 });
             }
 
@@ -178,7 +179,8 @@ namespace Eigenproject.Controllers
                     Genre = post.Genre,
                     File = fileLocation,
                     ID = post.Post_Id,
-                    Likes = post.Likes
+                    Likes = post.Likes,
+                    User_Id = post.User_Id
                 });
             }
 
@@ -199,7 +201,8 @@ namespace Eigenproject.Controllers
                     Genre = post.Genre,
                     File = fileLocation,
                     ID = post.Post_Id,
-                    Likes = post.Likes
+                    Likes = post.Likes,
+                    User_Id = post.User_Id
                 });
             }
 
@@ -227,6 +230,14 @@ namespace Eigenproject.Controllers
         {
             PostProcessor.UpdatePost(model.Title,model.Genre,model.Tags,model.ID);
             return RedirectToAction("GetPostsByTitle", "Post", new {title = model.Title});
+        }
+
+        public IActionResult DeletePost(int id)
+        {
+            var fileId = PostProcessor.GetPostByPostId(id).File_Id;
+            PostProcessor.DeletePost(id);
+            FileProcessor.DeleteFile(fileId);
+            return RedirectToAction("ViewPosts", "Post");
         }
     }
 }

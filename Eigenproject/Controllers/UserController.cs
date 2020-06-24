@@ -55,7 +55,7 @@ namespace Eigenproject.Controllers
                 return View();
             }
         }
-           
+
 
         public IActionResult LoginUser()
         {
@@ -123,6 +123,36 @@ namespace Eigenproject.Controllers
                 UserName = datamodel.UserName
             };
             return View(data);
+        }
+
+        public IActionResult DeleteUser()
+        {
+            var user_Id = HttpContext.GetCurrentUserModel().User_Id;
+            HttpContext.SignOutAsync();
+            var postdata = PostProcessor.GetPostsByUserId(user_Id);
+            foreach (var post in postdata)
+            {
+                PostProcessor.DeletePost(post.Post_Id);
+                FileProcessor.DeleteFile(post.File_Id);
+            }
+
+            var subscriptiondata = SubscriptionProcessor.GetSubscriptionsViaUserId(user_Id);
+            foreach (var subscription in subscriptiondata)
+            {
+                SubscriptionProcessor.RemoveSubscription(user_Id, subscription.SubscriptionName);
+            }
+            UserProcessor.DeleteUser(user_Id);
+
+            return RedirectToAction("ViewPosts", "Post");
+        }
+
+        public IActionResult LogOutUser()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                HttpContext.SignOutAsync();
+            }
+            return RedirectToAction("ViewPosts", "Post");
         }
     }
 }

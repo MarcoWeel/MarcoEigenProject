@@ -41,7 +41,7 @@ namespace DataLayerLibrary.DataLogic
 
         public static void DeleteUser(int id)
         {
-            string sql = $"DELETE FROM user WHERE Id = '{id}';";
+            string sql = $"DELETE FROM user WHERE User_Id = '{id}';";
             SQLAccessData.DeleteData(sql);
         }
 
