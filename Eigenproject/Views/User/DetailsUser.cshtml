@@ -3,8 +3,8 @@
 @{
     ViewData["Title"] = "DetailsUser";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var oldusername = Model.UserName;
 }
-
 
 
 <div class="postBox" style="margin-top: 80px; padding-left: 20px">
@@ -37,7 +37,7 @@
     </dl>
     <div>
         @Html.ActionLink("Logout", "LogOutUser", "User", null, new {@style="color : #fff;"}) |
-        @Html.ActionLink("Edit", "UpdateUser", new {username = Model.UserName}, new {@style = "color : #fff;"}) |
+        @Html.ActionLink("Edit", "UpdateUser", new {username = oldusername}, new {@style = "color : #fff;"}) |
         <a style="color: #fff" asp-controller="Post" asp-action="ViewPosts">Back to main page</a>
     </div>
 </div>

@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using LogicLayerLibrary;
 using LogicLayerLibrary.ExtensionMethods;
 using Microsoft.AspNetCore.Authentication;
+using Org.BouncyCastle.Crypto.Parameters;
 
 namespace Eigenproject.Controllers
 {
@@ -24,7 +25,15 @@ namespace Eigenproject.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult RegisterUser(UserModel user)
         {
-            var tempdata = UserProcessor.GetUserByUserName(user.UserName);
+            UserDataModel tempdata = new UserDataModel();
+            try
+            {
+                tempdata = UserProcessor.GetUserByUserName(user.UserName);
+            }
+            catch
+            {
+
+            }
             if (tempdata.Email == user.Email)
             {
                 ModelState.AddModelError("", "Email already in use");
@@ -106,7 +115,8 @@ namespace Eigenproject.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult UpdateUser(UserModel model)
         {
-            UserProcessor.UpdateUser(model.Email, model.Password, model.UserName, HttpContext.GetCurrentUserModel().User_Id);
+            var Salt = UserProcessor.GetUserByUserName(HttpContext.GetCurrentUserModel().UserName).Salt;
+            UserProcessor.UpdateUser(model.Email, HashingLogic.GenerateHash(Salt, model.Password), model.UserName, HttpContext.GetCurrentUserModel().User_Id);
             return RedirectToAction("ViewPosts", "Post");
         }
 

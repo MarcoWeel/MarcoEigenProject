@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Eigenproject.Models;
 
 namespace Eigenproject.Controllers
@@ -28,6 +29,7 @@ namespace Eigenproject.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CreatePost(PostFileUploadViewModel post)
         {
+            int file_id = 0;
             if (ModelState.IsValid)
             {
                 string uniqueFileName = null;
@@ -38,8 +40,14 @@ namespace Eigenproject.Controllers
                     uniqueFileName = Guid.NewGuid().ToString() + "_" + post.File.FileName;
                     string path = Path.Combine(uploadsfolder, uniqueFileName);
                     post.File.CopyTo(new FileStream(path, FileMode.Create));
-
-                    int file_id = FileProcessor.GetFileId() + 1;
+                    try
+                    {
+                        file_id = FileProcessor.GetFileId() + 1;
+                    }
+                    catch (Exception EX_NAME)
+                    {
+                        file_id = 1;
+                    }
                     string DBFileName = "../images/" + uniqueFileName;
                     FileProcessor.CreateFile(DBFileName);
                     GenreProcessor.CheckGenreAndTryToSave(post.Genre);
@@ -53,7 +61,7 @@ namespace Eigenproject.Controllers
                         file_id
                     );
                 }
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ViewPosts", "Post");
             }
 
             return View();
@@ -77,6 +85,8 @@ namespace Eigenproject.Controllers
                     User_Id = post.User_Id
                 });
             }
+
+            posts.OrderByDescending(x => x.ID);
             return View(posts);
         }
 
@@ -228,8 +238,8 @@ namespace Eigenproject.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult UpdatePost(PostFileViewModel model)
         {
-            PostProcessor.UpdatePost(model.Title,model.Genre,model.Tags,model.ID);
-            return RedirectToAction("GetPostsByTitle", "Post", new {title = model.Title});
+            PostProcessor.UpdatePost(model.Title, model.Genre, model.Tags, model.ID);
+            return RedirectToAction("ViewPosts", "Post");
         }
 
         public IActionResult DeletePost(int id)

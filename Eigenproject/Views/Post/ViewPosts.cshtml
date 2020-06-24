@@ -21,15 +21,14 @@
         var oldLikeAmount = item.Likes;
         string path = item.File;
         var extension = System.IO.Path.GetExtension(path);
-        string type = "Genre";
-<div class="postBox">
+        <div class="postBox">
     <input style="display: none" value="@item.Tags" class="TypeInput" id="TagInput" />
     <input style="display: none" value="@item.Genre" id="GenreInput" />
     <h5 class="center" style="color: #fff; padding-bottom: 0; margin-left: 30px; width: inherit">
         @if (Context.GetCurrentUserModel().User_Id == item.User_Id)
         {
             @item.Title
-            <button style="margin-left: 10px" class="btn btn-primary" asp-controller="Post" asp-action="UpdatePost" asp-route-post_Id="@item.ID" >Edit post</button>
+            @Html.ActionLink("Edit post", "UpdatePost", "Post", new { post_Id = item.ID}, new {@style = "color : #fff; margin-left : 10px"}) 
         }
         else
         {

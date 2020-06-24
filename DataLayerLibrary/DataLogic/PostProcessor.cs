@@ -90,7 +90,8 @@ namespace DataLayerLibrary.DataLogic
                 Genre = genre,
                 Tags = tag
             };
-            string sql = $"Update user Set Title = '{title}', Genre = '{genre}', Tags = '{tag}'; WHERE Post_Id = '{id}';";
+            string sql = $"Update post Set Title = '{title}', Genre = '{genre}', Tags = '{tag}' WHERE Post_Id = '{id}';";
+            SQLAccessData.SaveData(sql, data);
         }
 
         public static void DeletePost(int id)

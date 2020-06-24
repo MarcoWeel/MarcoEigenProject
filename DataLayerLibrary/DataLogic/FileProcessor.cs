@@ -14,7 +14,7 @@ namespace DataLayerLibrary.DataLogic
             {
                 Location = location
             };
-            string sql = "INSERT INTO file(File_Location) VALUES(@Location);";
+            string sql = "INSERT INTO file(Location) VALUES(@Location);";
             SQLAccessData.SaveData(sql, data);
         }
 
@@ -27,7 +27,7 @@ namespace DataLayerLibrary.DataLogic
 
         public static string LoadFilePath(int id)
         {
-            string sql = $"Select File_Location FROM file WHERE File_Id = '{id}';";
+            string sql = $"Select Location FROM file WHERE File_Id = '{id}';";
             var data = SQLAccessData.LoadFirstEntry<string>(sql);
             return data;
         }
@@ -35,10 +35,16 @@ namespace DataLayerLibrary.DataLogic
 
         public static int GetFileId()
         {
-            string sql = $"SELECT MAX(File_Id) FROM file LIMIT 1;";
-            var data = SQLAccessData.LoadFirstEntry<int>(sql);
-            return data;
-
+            try
+            {
+                string sql = $"SELECT MAX(File_Id) FROM file LIMIT 1;";
+                var data = SQLAccessData.LoadFirstEntry<int>(sql);
+                return data;
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
         }
 
         public static void DeleteFile(int id)
